@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "d5bd9d5c-3e47-479f-aec8-25d1c022e790",
+		"name": "CAR WASH",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"engineer\",\n    \"password\": \"engineer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MTYzOTAxNywianRpIjoiZTA2MDU2YWMtZDQ1Zi00YmUwLWFjZGQtZmJjMmFhYTY3NDI5IiwidHlwZSI6InJlZnJlc2giLCJzdWIiOjEsIm5iZiI6MTY0MTYzOTAxNywiZXhwIjoxNjQxODE5MDE3fQ._x_zhdLkauIE7lwYUrq_pgoJGRJIfJQ6CzcZhDUJ9f0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get auth profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MTc5NzQ3OCwianRpIjoiZGVmZWYxNTUtNTRiYi00NGIyLThjMWItMWEyNzFjMWY4YWY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NiwibmJmIjoxNjQxNzk3NDc4LCJleHAiOjE2NDE3OTg2Nzh9.5bBREtJuKL8EzVTtbyMhm0WMpYR-81fBakZeCg8oG3Y",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "role",
+			"item": [
+				{
+					"name": "get role ids",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MTcwOTUyMiwianRpIjoiYjMyY2RlZWQtNmQ4OS00MDViLThmMTEtMTEyNGQ0NjYyMjU5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjQxNzA5NTIyLCJleHAiOjE2NDE3MTA3MjJ9.1ov_Y43IfGUYJDAtPAajPhC-dARn7HuEb3RphIrah-Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/role",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get role by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MTcwOTUyMiwianRpIjoiYjMyY2RlZWQtNmQ4OS00MDViLThmMTEtMTEyNGQ0NjYyMjU5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjQxNzA5NTIyLCJleHAiOjE2NDE3MTA3MjJ9.1ov_Y43IfGUYJDAtPAajPhC-dARn7HuEb3RphIrah-Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/role/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"role",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ticket",
+			"item": [
+				{
+					"name": "create ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MTc5NTIwOCwianRpIjoiZTFhOGNjYjktYjZhYi00NDQ4LWFmZGQtM2I2MmEzNmQyNTJiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NiwibmJmIjoxNjQxNzk1MjA4LCJleHAiOjE2NDE3OTY0MDh9.WnX21VrclhZIwMTCDH_QuzwUq_X8BH_bW88cK8PaINo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role_id\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/ticket",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ticket"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"client\",\n    \"password\": \"client\",\n    \"ticket_code\": \"B6LBemWUhJsHPeyOHP3UPJl3dV8Xj84d\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/user",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
