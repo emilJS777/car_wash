@@ -589,7 +589,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/api/device",
+							"raw": "http://127.0.0.1:5000/api/device_payment",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -600,7 +600,7 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"device"
+								"device_payment"
 							]
 						}
 					},
@@ -612,7 +612,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/api/device_info/1",
+							"raw": "http://127.0.0.1:5000/api/device_payment/34",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -623,8 +623,8 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"device_info",
-								"1"
+								"device_payment",
+								"34"
 							]
 						}
 					},
@@ -637,7 +637,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"device_id\": 1,\n    \"payment\": 12.00,\n    \"topic\": \"topic\"\n}",
+							"raw": "{\n    \"device_id\": 1,\n    \"payment\": 5000.00,\n    \"currency\": \"amd\",\n    \"topic\": \"topic\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -645,7 +645,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/api/device_info",
+							"raw": "http://127.0.0.1:5000/api/device_payment",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -656,7 +656,7 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"device_info"
+								"device_payment"
 							]
 						}
 					},
