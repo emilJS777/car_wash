@@ -533,10 +533,16 @@
 					"name": "create device",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MjM0NjA2MCwianRpIjoiNmNmOTQ4N2YtZmRiNy00ZTRiLTgzOTMtMjk5ZTI3YWRiYWRhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTEsIm5iZiI6MTY0MjM0NjA2MCwiZXhwIjoxNjQyMzQ3MjYwfQ.HbN9rbKrTzCzvPV4L3aLClnc1rz8KOE2D1XNaR2bBpM",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"code\": \"1213d\",\n    \"car_wash_id\": null\n}",
+							"raw": "{\n    \"code\": 1212,\n    \"car_wash_id\": 111\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -572,8 +578,30 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": 1231,\n    \"car_wash_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": ""
+							"raw": "http://127.0.0.1:5000/api/device/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"device",
+								"1"
+							]
 						}
 					},
 					"response": []
@@ -581,10 +609,10 @@
 			]
 		},
 		{
-			"name": "device info",
+			"name": "device payment",
 			"item": [
 				{
-					"name": "get device info ids",
+					"name": "get device payment ids",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -607,7 +635,7 @@
 					"response": []
 				},
 				{
-					"name": "get device info by id",
+					"name": "get device payment by id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -631,13 +659,13 @@
 					"response": []
 				},
 				{
-					"name": "create device info for MQTT",
+					"name": "create device payment for MQTT",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"device_id\": 1,\n    \"payment\": 5000.00,\n    \"currency\": \"amd\",\n    \"topic\": \"topic\"\n}",
+							"raw": "{\n    \"device_id\": 1,\n    \"payment\": 50000.00,\n    \"currency\": \"amd\",\n    \"topic\": \"topic\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
