@@ -1,19 +1,19 @@
 from src.models.role_model import Role
 
 
-# CREATE ROLE
-def create_role(title):
-    role = Role(title=title)
-    role.save_db()
-    return role
-
-
 # GET ROLE IDS
 def get_role_ids():
-    role_ids = []
-    for role in Role.query.all():
-        role_ids.append(role.id)
-    return role_ids
+    ids = []
+    roles = Role.query.all()
+    for role in roles:
+        ids.append(role.id)
+    return ids
+
+
+# GET ROLE BY NAME
+def get_role_by_name(name):
+    role = Role.query.filter_by(name=name).first()
+    return role
 
 
 # GET ROLE BY ID
@@ -22,7 +22,23 @@ def get_role_by_id(role_id):
     return role
 
 
-# GET BY TITLE
-def get_role_by_title(title):
-    role = Role.query.filter_by(title=title).first()
+# CREATE ROLE
+def create_role(name):
+    role = Role(name=name)
+    role.save_db()
     return role
+
+
+# UPDATE ROLE
+def update_role(role_id, name):
+    role = Role.query.filter_by(id=role_id).first()
+    role.name = name
+    return role
+
+
+# DELETE ROLE
+def delete_role(role_id):
+    role = Role.query.filter_by(id=role_id).first()
+    role.delete_db()
+    return role
+

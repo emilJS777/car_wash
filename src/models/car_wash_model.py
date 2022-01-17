@@ -1,16 +1,15 @@
 from src import db
 
 
-class Email(db.Model):
+class CarWash(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    address = db.Column(db.String(120), unique=True, nullable=False)
-    user_id = db.Column(db.Integer, unique=True, nullable=False)
-    active = db.Column(db.Boolean, default=False)
+    title = db.Column(db.String(50), unique=False, nullable=False)
+    owner_id = db.Column(db.Integer, nullable=False)
 
     # CONSTRUCTOR
-    def __init__(self, address, user_id):
-        self.address = address
-        self.user_id = user_id
+    def __init__(self, title, owner_id):
+        self.title = title
+        self.owner_id = owner_id
 
     # SAVE DB SELF
     def save_db(self):

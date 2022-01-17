@@ -1,37 +1,30 @@
 from src import logger
-from src.services_db import ticket_service_db, role_service_db
+from src.services_db import role_service_db, ticket_service_db
+from src.models.ticket_model import Ticket
 
 
 class Initializer:
-    roles = ["engineer", "client"]
+    roles = ["admin", "engineer", "owner", "client"]
 
     # CONSTRUCTOR
     def __init__(self):
-        self.create_roles(roles=self.roles)
-        self.create_first_ticket(role_title=self.roles[0])
+        self.init_roles()
+        self.init_first_ticket()
 
-    @staticmethod
-    def create_roles(roles):
-        # CHECK OR CREATE ROLE
-        for title in roles:
-            role = role_service_db.get_role_by_title(title=title)
-            if not role:
-                new_role = role_service_db.create_role(title=title)
-                logger.info(f"new role by title {new_role.title} created")
-            else:
-                logger.info(f"role by title {title} exist")
+    def init_roles(self):
+        # CREATE SELF ROLES IF NOT EXIST
+        for role_name in self.roles:
+            if not role_service_db.get_role_by_name(name=role_name):
+                role_service_db.create_role(name=role_name)
+                logger.info(f"role by name {role_name} successfully created")
 
-    @staticmethod
-    def create_first_ticket(role_title):
-        # CHECK OR CREATE FIRST TICKET
-        role = role_service_db.get_role_by_title(title=role_title)
-
-        if not role:
-            return logger.info(f"role by title {role_title} not found, to generate a ticket")
-
-        elif ticket_service_db.get_ticket_by_role_id(role_id=role.id):
-            return logger.info(f"ticket for role {role.title} exist")
-
-        else:
-            ticket = ticket_service_db.create_ticket(role_id=role.id)
-            return logger.info(f"new ticket code successfully generated {ticket.code}")
+    def init_first_ticket(self):
+        # IF FIRST TICKET NOT FOUND
+        if not Ticket.query.first():
+            # GET ID ADMIN ROLE
+            role_id = role_service_db.get_role_by_name(name=self.roles[0]).id
+            # GENERATE TICKET CODE
+            ticket_code = ticket_service_db.generate_ticket_code()
+            # CREATE TICKET BY ADMIN ROLE
+            ticket_service_db.create_ticket(role_id=role_id, code=ticket_code)
+            logger.info(f"ticket for first admin created! code={ticket_code}")

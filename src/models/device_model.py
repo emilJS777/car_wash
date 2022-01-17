@@ -1,13 +1,17 @@
 from src import db
+from datetime import datetime
 
 
-class Role(db.Model):
+class Device(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
+    code = db.Column(db.Integer, nullable=False)
+    car_wash_id = db.Column(db.Integer, nullable=True)
+    last_update = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, code, car_wash_id):
+        self.code = code,
+        self.car_wash_id = car_wash_id
 
     # SAVE DB SELF
     def save_db(self):

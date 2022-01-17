@@ -1,4 +1,5 @@
-from src import app, context_initializer
+from src import app
+from src.utils import context_initializer
 
 context_initializer.Initializer()
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 from flask import request, g
 from flask_jwt_extended import get_jwt_identity
-from src.services_db import auth_service_db, user_service_db, ticket_service_db, role_service_db
+from src.services_db import auth_service_db, user_service_db
 from src._response import response
 from flask_bcrypt import check_password_hash
 
@@ -32,10 +32,3 @@ def refresh():
         return response(False, {'msg': 'invalid refresh token'}, 401)
 
 
-# GET AUTH USER
-def get_profile():
-    # GET TICKET ROLE AND USER FROM AUTH USER
-    ticket = ticket_service_db.get_ticket_by_user_id(user_id=g.user_id)
-    role = role_service_db.get_role_by_id(role_id=ticket.role_id)
-    user = user_service_db.get_user_by_id(user_id=g.user_id)
-    return response(True, {'user_name': user.name, 'role_name': role.title}, 200)

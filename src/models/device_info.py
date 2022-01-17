@@ -2,17 +2,18 @@ from src import db
 from datetime import datetime
 
 
-class Ticket(db.Model):
+class DeviceInfo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    role_id = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.Integer, nullable=True)
-    code = db.Column(db.String(50), unique=True, nullable=True)
-    active = db.Column(db.Boolean, default=True)
-    expiration_date = db.Column(db.DateTime, default=datetime.utcnow())
+    device_id = db.Column(db.Integer, nullable=False)
+    payment = db.Column(db.Numeric(4, 2), nullable=False)
+    topic = db.Column(db.String(120), nullable=False)
+    creation_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, role_id):
-        self.role_id = role_id
+    def __init__(self, device_id, payment, topic):
+        self.device_id = device_id
+        self.payment = payment
+        self.topic = topic
 
     # SAVE DB SELF
     def save_db(self):
