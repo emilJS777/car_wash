@@ -68,20 +68,19 @@
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
 				{
-					"name": "get auth profile",
+					"name": "get user by id",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MTc5NzQ3OCwianRpIjoiZGVmZWYxNTUtNTRiYi00NGIyLThjMWItMWEyNzFjMWY4YWY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NiwibmJmIjoxNjQxNzk3NDc4LCJleHAiOjE2NDE3OTg2Nzh9.5bBREtJuKL8EzVTtbyMhm0WMpYR-81fBakZeCg8oG3Y",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/api/auth",
+							"raw": "http://127.0.0.1:5000/api/user/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -92,7 +91,97 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"auth"
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"username\",\n    \"first_name\": \"first_name\",\n    \"last_name\": \"last_name\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/user",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"username\",\n    \"first_name\": \"first_name\",\n    \"last_name\": \"last_name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/user/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/user/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"1"
 							]
 						}
 					},
@@ -104,16 +193,19 @@
 			"name": "role",
 			"item": [
 				{
-					"name": "get role ids",
+					"name": "create role",
 					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MTcwOTUyMiwianRpIjoiYjMyY2RlZWQtNmQ4OS00MDViLThmMTEtMTEyNGQ0NjYyMjU5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjQxNzA5NTIyLCJleHAiOjE2NDE3MTA3MjJ9.1ov_Y43IfGUYJDAtPAajPhC-dARn7HuEb3RphIrah-Q",
-								"type": "text"
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"engineer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
 							}
-						],
+						},
 						"url": {
 							"raw": "http://127.0.0.1:5000/api/role",
 							"protocol": "http",
@@ -133,18 +225,21 @@
 					"response": []
 				},
 				{
-					"name": "get role by id",
+					"name": "update role",
 					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MTcwOTUyMiwianRpIjoiYjMyY2RlZWQtNmQ4OS00MDViLThmMTEtMTEyNGQ0NjYyMjU5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjQxNzA5NTIyLCJleHAiOjE2NDE3MTA3MjJ9.1ov_Y43IfGUYJDAtPAajPhC-dARn7HuEb3RphIrah-Q",
-								"type": "text"
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"role new name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
 							}
-						],
+						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/api/role/5",
+							"raw": "http://127.0.0.1:5000/api/role/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -156,7 +251,78 @@
 							"path": [
 								"api",
 								"role",
-								"5"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/role/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get role by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/role/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get role ids",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/role",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"role"
 							]
 						}
 					},
@@ -171,22 +337,7 @@
 					"name": "create ticket",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MTc5NTIwOCwianRpIjoiZTFhOGNjYjktYjZhYi00NDQ4LWFmZGQtM2I2MmEzNmQyNTJiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NiwibmJmIjoxNjQxNzk1MjA4LCJleHAiOjE2NDE3OTY0MDh9.WnX21VrclhZIwMTCDH_QuzwUq_X8BH_bW88cK8PaINo",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"role_id\": 5\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
+						"header": [],
 						"url": {
 							"raw": "http://127.0.0.1:5000/api/ticket",
 							"protocol": "http",
@@ -208,24 +359,15 @@
 			]
 		},
 		{
-			"name": "user",
+			"name": "car wash",
 			"item": [
 				{
-					"name": "create user",
+					"name": "get car wash ids",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"client\",\n    \"password\": \"client\",\n    \"ticket_code\": \"B6LBemWUhJsHPeyOHP3UPJl3dV8Xj84d\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/api/user",
+							"raw": "http://127.0.0.1:5000/api/car_wash",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -236,7 +378,285 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"user"
+								"car_wash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get car wash by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/car_wash/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"car_wash",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create car wash",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MjMzNTY1NCwianRpIjoiMjA2OTAzNDctNjU1My00YzViLWE5MWYtYTVjMjlhN2I1NTYwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTEsIm5iZiI6MTY0MjMzNTY1NCwiZXhwIjoxNjQyMzM2ODU0fQ.Z427g1K9wRvMJIrTvZ4aJMrZySN_-UQ-hZd7fLLH3xc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"k-301\",\n    \"owner_id\": 9\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/car_wash",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"car_wash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update car wash",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MjMzNTY1NCwianRpIjoiMjA2OTAzNDctNjU1My00YzViLWE5MWYtYTVjMjlhN2I1NTYwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTEsIm5iZiI6MTY0MjMzNTY1NCwiZXhwIjoxNjQyMzM2ODU0fQ.Z427g1K9wRvMJIrTvZ4aJMrZySN_-UQ-hZd7fLLH3xc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"g-502\",\n    \"owner_id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/car_wash/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"car_wash",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "device",
+			"item": [
+				{
+					"name": "get device ids",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "get device by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MjM0NjA2MCwianRpIjoiNmNmOTQ4N2YtZmRiNy00ZTRiLTgzOTMtMjk5ZTI3YWRiYWRhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTEsIm5iZiI6MTY0MjM0NjA2MCwiZXhwIjoxNjQyMzQ3MjYwfQ.HbN9rbKrTzCzvPV4L3aLClnc1rz8KOE2D1XNaR2bBpM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/device/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"device",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create device",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"1213d\",\n    \"car_wash_id\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/device",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"device"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update car wash",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MjM0NjA2MCwianRpIjoiNmNmOTQ4N2YtZmRiNy00ZTRiLTgzOTMtMjk5ZTI3YWRiYWRhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTEsIm5iZiI6MTY0MjM0NjA2MCwiZXhwIjoxNjQyMzQ3MjYwfQ.HbN9rbKrTzCzvPV4L3aLClnc1rz8KOE2D1XNaR2bBpM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "device info",
+			"item": [
+				{
+					"name": "get device info ids",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/device",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"device"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get device info by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/device_info/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"device_info",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create device info for MQTT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"device_id\": 1,\n    \"payment\": 12.00,\n    \"topic\": \"topic\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/device_info",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"device_info"
 							]
 						}
 					},
