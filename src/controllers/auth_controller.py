@@ -18,3 +18,8 @@ def refresh():
     res = auth_service.refresh()
     return res
 
+
+@auth_middleware.check_authorize
+def get_profile():
+    res = auth_service.get_profile()
+    return res

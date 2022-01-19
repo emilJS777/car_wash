@@ -3,6 +3,12 @@ import random
 import string
 
 
+# GET TICKET BY ID
+def get_ticket_by_id(ticket_id):
+    ticket = Ticket.query.filter_by(id=ticket_id).first()
+    return ticket
+
+
 # GET TICKET BY USER ID
 def get_ticket_by_user_id(user_id):
     ticket = Ticket.query.filter_by(user_id=user_id).first()
@@ -29,6 +35,13 @@ def update_ticket(ticket_id, user_id):
     ticket.user_id = user_id
     ticket.code = None
     ticket.update_db()
+    return ticket
+
+
+# DELETE TICKET BY ID
+def delete_ticket(ticket_id):
+    ticket = Ticket.query.filter_by(id=ticket_id).first()
+    ticket.delete_db()
     return ticket
 
 

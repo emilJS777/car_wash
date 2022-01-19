@@ -15,4 +15,15 @@ def create_ticket():
 
     # CREATE TICKET FOR THIS ROLE AND RETURN RESPONSE OK
     ticket = ticket_service_db.create_ticket(role_id=role_id, code=ticket_service_db.generate_ticket_code())
-    return response(True, {'code': ticket.code}, 201)
+    return response(True, {'id': ticket.id, 'code': ticket.code}, 201)
+
+
+# DELETE TICKET BY ID
+def delete_ticket(ticket_id):
+    # GET TICKET BY ID AND VERIFY. IF NOT FOUND RETURN NOT FOUND
+    if not ticket_service_db.get_ticket_by_id(ticket_id=ticket_id):
+        return response(False, {'msg': 'ticket not found'}, 404)
+
+    # ELSE DELETE TICKET AND RETURN OK
+    ticket = ticket_service_db.delete_ticket(ticket_id=ticket_id)
+    return response(True, {'msg': f'ticket by id {ticket.id} successfully deleted!'}, 200)
