@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"engineer\",\n    \"password\": \"engineer\"\n}",
+							"raw": "{\n    \"name\": \"emil777\",\n    \"password\": \"123123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -49,6 +49,35 @@
 								"key": "Authorization",
 								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MTYzOTAxNywianRpIjoiZTA2MDU2YWMtZDQ1Zi00YmUwLWFjZGQtZmJjMmFhYTY3NDI5IiwidHlwZSI6InJlZnJlc2giLCJzdWIiOjEsIm5iZiI6MTY0MTYzOTAxNywiZXhwIjoxNjQxODE5MDE3fQ._x_zhdLkauIE7lwYUrq_pgoJGRJIfJQ6CzcZhDUJ9f0",
 								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/auth",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MjY3NzgwNCwianRpIjoiYzgzNmUwZTMtOTcyZS00YzExLWE3Y2YtMDZjMTMzNWNmZjY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjQyNjc3ODA0LCJleHAiOjE2NDI2NzkwMDR9.No0sHkXHQ12j4kpN5E74hxHv1vA_8MvuH36KfsneTWM",
+								"type": "default"
 							}
 						],
 						"url": {
@@ -351,6 +380,97 @@
 							"path": [
 								"api",
 								"ticket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get engineer tickets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MjY3NzgwNCwianRpIjoiYzgzNmUwZTMtOTcyZS00YzExLWE3Y2YtMDZjMTMzNWNmZjY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjQyNjc3ODA0LCJleHAiOjE2NDI2NzkwMDR9.No0sHkXHQ12j4kpN5E74hxHv1vA_8MvuH36KfsneTWM",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/ticket/engineer",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ticket",
+								"engineer"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete ticket",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer asdjasdhkjsdhbasfdjhsadjfhjs",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/ticket/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ticket",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "activate or deactivate ticket",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/ticket/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ticket",
+								"4"
 							]
 						}
 					},

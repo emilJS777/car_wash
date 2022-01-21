@@ -16,7 +16,7 @@ def get_user_by_id(user_id):
 
 # CREATE USER
 def create_user(name, first_name, last_name, password, ticket_code=None):
-    # GET AND VERIFY. EXIST USER BY THIS NAME, IF YES RETURN CONFLICTs
+    # GET AND VERIFY. EXIST USER BY THIS NAME, IF YES RETURN CONFLICT
     if user_service_db.get_user_by_name(name=name):
         return response(False, {'msg': 'user by this username exist'}, 409)
 
@@ -24,8 +24,8 @@ def create_user(name, first_name, last_name, password, ticket_code=None):
     if ticket_code:
         ticket = ticket_service_db.get_ticket_by_code(code=ticket_code)
 
-        # IF TICKET NOT FOUND RETURN NOT FOUND
-        if not ticket:
+        # IF TICKET NOT FOUND OR TICKET NOT ACTIVE RETURN NOT FOUND
+        if not ticket or not ticket.active:
             return response(False, {'msg': 'ticket code not found'}, 404)
     # ELSE IF NOT TICKET CODE CREATE NEW TICKET FOR CLIENT USER
     else:

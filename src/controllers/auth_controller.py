@@ -4,6 +4,7 @@ from src.services import auth_service
 from flask_expects_json import expects_json
 from src.validators import auth_validator
 from src.middlewares import auth_middleware
+from src.middlewares import ticket_middleware
 
 
 @expects_json(auth_validator.login_schema)
@@ -20,6 +21,7 @@ def refresh():
 
 
 @auth_middleware.check_authorize
+@ticket_middleware.check_active_ticket
 def get_profile():
     res = auth_service.get_profile()
     return res

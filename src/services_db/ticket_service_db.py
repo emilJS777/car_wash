@@ -3,6 +3,16 @@ import random
 import string
 
 
+# GET TICKET IDS BY ROLE ID
+def get_tickets_by_role_id(role_id):
+    tickets_arr = []
+    tickets = Ticket.query.order_by(Ticket.expiration_date).filter_by(role_id=role_id).all()
+    for ticket in tickets:
+        tickets_arr.append({'id': ticket.id, 'role_id': ticket.role_id, 'expiration_date': ticket.expiration_date,
+                            'code': ticket.code, 'active': ticket.active, 'user_id': ticket.user_id})
+    return tickets_arr
+
+
 # GET TICKET BY ID
 def get_ticket_by_id(ticket_id):
     ticket = Ticket.query.filter_by(id=ticket_id).first()
@@ -42,6 +52,14 @@ def update_ticket(ticket_id, user_id):
 def delete_ticket(ticket_id):
     ticket = Ticket.query.filter_by(id=ticket_id).first()
     ticket.delete_db()
+    return ticket
+
+
+# ACTIVATE OR DEACTIVATE TICKET BY ID
+def activate_or_deactivate_ticket(ticket_id):
+    ticket = Ticket.query.filter_by(id=ticket_id).first()
+    ticket.active = False if ticket.active else True
+    ticket.update_db()
     return ticket
 
 
