@@ -7,6 +7,12 @@ app.add_url_rule("/api/ticket/engineer",
                  methods=["GET"])
 
 
+# GET OWNER TICKETS
+app.add_url_rule("/api/ticket/owner",
+                 view_func=ticket_controller.get_owner_tickets,
+                 methods=["GET"])
+
+
 # CREATE TICKET
 app.add_url_rule("/api/ticket",
                  view_func=ticket_controller.create_ticket,

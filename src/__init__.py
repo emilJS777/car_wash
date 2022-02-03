@@ -1,2 +1,2 @@
-from .config import app, db, logger
+from .config import app, db, logger, mail
 from .routes import *

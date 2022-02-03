@@ -23,16 +23,17 @@ def get_car_wash_by_id(car_wash_id):
 
 
 # CREATE CAR WASH
-def create_car_wash(title, owner_id):
-    car_wash = CarWash(title=title, owner_id=owner_id)
+def create_car_wash(title, address, owner_id):
+    car_wash = CarWash(title=title, address=address, owner_id=owner_id)
     car_wash.save_db()
     return car_wash
 
 
 # UPDATE CAR WASH
-def update_car_wash(car_wash_id, title, owner_id):
+def update_car_wash(car_wash_id, title, address, owner_id):
     car_wash = CarWash.query.filter_by(id=car_wash_id).first()
     car_wash.title = title
+    car_wash.address = address
     car_wash.owner_id = owner_id
     car_wash.update_db()
     return car_wash

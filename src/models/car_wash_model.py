@@ -1,14 +1,18 @@
 from src import db
+from datetime import datetime
 
 
 class CarWash(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), unique=False, nullable=False)
+    address = db.Column(db.String(100), unique=False, nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
+    creation_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, title, owner_id):
+    def __init__(self, title, address, owner_id):
         self.title = title
+        self.address = address
         self.owner_id = owner_id
 
     # SAVE DB SELF

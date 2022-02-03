@@ -6,12 +6,13 @@ from flask_jwt_extended import JWTManager
 from datetime import datetime
 import logging
 from flask_cors import CORS
+from flask_mail import Mail
 
 app = Flask(__name__)
 api = Api(app)
 
 # CONNECT TO DATABASE CONFIG
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@localhost/car_wash_db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Current-Root-Password@localhost/car_wash_db"
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../car_wash.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
@@ -33,3 +34,12 @@ CORS(app, supports_credentials=True)
 # LOGGING
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(f"{datetime.utcnow()}")
+
+# EMAIL CONFIG
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'emil.hambardzumyan28@gmail.com'
+app.config['MAIL_PASSWORD'] = '07454521'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
