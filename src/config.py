@@ -7,6 +7,9 @@ from datetime import datetime
 import logging
 from flask_cors import CORS
 from flask_mail import Mail
+from flask_mqtt import Mqtt
+from flask_socketio import SocketIO
+
 
 app = Flask(__name__)
 api = Api(app)
@@ -43,3 +46,15 @@ app.config['MAIL_PASSWORD'] = '07454521'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
+
+# MQTT CONFIG
+app.config['MQTT_CLIENT_ID'] = 'mqttx_db9f3db5'
+app.config['MQTT_BROKER_URL'] = 'broker.emqx.io'
+app.config['MQTT_BROKER_PORT'] = 1883
+app.config['MQTT_USERNAME'] = 'asd'
+app.config['MQTT_PASSWORD'] = 'sdf'
+# app.config['MQTT_KEEPALIVE'] = 5
+# app.config['MQTT_TLS_ENABLED'] = False
+mqtt = Mqtt(app)
+
+socketio = SocketIO(app)

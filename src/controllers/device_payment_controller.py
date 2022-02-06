@@ -18,11 +18,3 @@ def get_device_payment_ids():
 def get_device_payment_by_id(device_payment_id):
     res = device_payment_service.get_device_payment_by_id(device_payment_id=device_payment_id)
     return res
-
-
-# CREATE DEVICE INFO
-def create_device_payment():
-    req = request.get_json()
-    res = device_payment_service.create_device_payment(device_id=req['device_id'], payment=req['payment'],
-                                                       currency=req['currency'], topic=req['topic'])
-    return res

@@ -2,20 +2,16 @@ from src import db
 from datetime import datetime
 
 
-class DevicePayment(db.Model):
+class DeviceError(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    device_id = db.Column(db.Integer, nullable=False)
-    price = db.Column(db.Numeric(8, 2), nullable=False)
-    currency = db.Column(db.String(4), nullable=False)
-    type = db.Column(db.String(120), nullable=False)
+    device_code = db.Column(db.Integer, nullable=False)
+    msg = db.Column(db.String(300), nullable=False)
     creation_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, device_id, price, currency, type):
-        self.device_id = device_id
-        self.price = price
-        self.currency = currency
-        self.type = type
+    def __init__(self, device_code, msg):
+        self.device_code = device_code,
+        self.msg = msg
 
     # SAVE DB SELF
     def save_db(self):

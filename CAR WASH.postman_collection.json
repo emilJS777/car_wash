@@ -134,7 +134,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"username\",\n    \"first_name\": \"first_name\",\n    \"last_name\": \"last_name\",\n    \"password\": \"password\"\n}",
+							"raw": "{\n    \"name\": \"admin123\",\n    \"first_name\": \"admin\",\n    \"last_name\": \"admin\",\n    \"password\": \"admin123\",\n    \"ticket_code\": \"gl8GV2yKs0OtPwpYZEwXDqR8kYrJadpx\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -423,6 +423,36 @@
 					"response": []
 				},
 				{
+					"name": "get owner tickets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MjY3NzgwNCwianRpIjoiYzgzNmUwZTMtOTcyZS00YzExLWE3Y2YtMDZjMTMzNWNmZjY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjQyNjc3ODA0LCJleHAiOjE2NDI2NzkwMDR9.No0sHkXHQ12j4kpN5E74hxHv1vA_8MvuH36KfsneTWM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/ticket/owner",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"ticket",
+								"owner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "delete ticket",
 					"request": {
 						"method": "DELETE",
@@ -470,6 +500,105 @@
 							"path": [
 								"api",
 								"ticket",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "email",
+			"item": [
+				{
+					"name": "create email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NDA1MDk3NywianRpIjoiNTgxNDk4M2QtOTQ3NC00ZjZkLWFkMTktN2ZiMTBkNjI5MTkxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjQ0MDUwOTc3LCJleHAiOjE2NDQwNTIxNzd9.iJxwH0UZE8FSmUWcvpjAvHXYryF9yBEHWnKPTts6SJ8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ticket_id\": 5,\n    \"address\": \"emil929292@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/email",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send ticket code by email id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/email/send_ticket_code_by_email_id/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"email",
+								"send_ticket_code_by_email_id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get email by ticket id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MzI3NzYzOSwianRpIjoiMmMyN2NmODMtZjE1ZC00OGJjLThhMWMtMTU1MzY3Njk2NWIyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjQzMjc3NjM5LCJleHAiOjE2NDMyNzg4Mzl9.7gN4DEl17Jz4kXViID1JjR_p-8aRvJSBy_mnLB-DqJQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/email/get_by_ticket_id/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"email",
+								"get_by_ticket_id",
 								"4"
 							]
 						}
@@ -773,38 +902,6 @@
 								"api",
 								"device_payment",
 								"34"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create device payment for MQTT",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"device_id\": 1,\n    \"payment\": 50000.00,\n    \"currency\": \"amd\",\n    \"topic\": \"topic\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/api/device_payment",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"device_payment"
 							]
 						}
 					},
