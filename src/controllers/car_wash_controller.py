@@ -6,7 +6,7 @@ from src.middlewares import auth_middleware, role_middleware, ticket_middleware
 # GET CAR WASH IDS
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
-@role_middleware.check_role(["admin", "engineer"])
+@role_middleware.check_role(["admin", "engineer", "owner"])
 def get_car_wash_ids():
     res = car_wash_service.get_car_wash_ids()
     return res
@@ -15,7 +15,7 @@ def get_car_wash_ids():
 # GET CAR WASH BY ID
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
-@role_middleware.check_role(["admin", "engineer"])
+@role_middleware.check_role(["admin", "engineer", "owner"])
 def get_car_wash_by_id(car_wash_id):
     res = car_wash_service.get_car_wash_by_id(car_wash_id=car_wash_id)
     return res

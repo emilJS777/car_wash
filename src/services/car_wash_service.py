@@ -1,10 +1,13 @@
 from src.services_db import car_wash_service_db, user_service_db
 from src._response import response
+from flask import g
 
 
 # GET CAR WASH IDS
 def get_car_wash_ids():
-    car_wash_ids = car_wash_service_db.get_car_wash_ids()
+    # GET CAR WASH IDS BY OWNER ID IF G ROLE NAME IS OWNER, ELSE GET ALL IDS
+    car_wash_ids = car_wash_service_db.get_car_wash_ids_by_owner_id(owner_id=g.user_id) if g.role_name == "owner" \
+        else car_wash_service_db.get_car_wash_ids()
     return response(True, car_wash_ids, 200)
 
 

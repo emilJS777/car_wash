@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"emil777\",\n    \"password\": \"123123\"\n}",
+							"raw": "{\n    \"name\": \"owner1234\",\n    \"password\": \"owner1234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -134,7 +134,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"admin123\",\n    \"first_name\": \"admin\",\n    \"last_name\": \"admin\",\n    \"password\": \"admin123\",\n    \"ticket_code\": \"gl8GV2yKs0OtPwpYZEwXDqR8kYrJadpx\"\n}",
+							"raw": "{\n    \"name\": \"owner1234\",\n    \"first_name\": \"owner\",\n    \"last_name\": \"owner\",\n    \"password\": \"owner1234\",\n    \"ticket_code\": \"NdQ5PGDcm0lLXFHmuZWeC1m7lBkZbfnQ\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -366,7 +366,13 @@
 					"name": "create ticket",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NDIxNjE2NCwianRpIjoiMGYyMmYxNWMtOTE2Ny00NDk3LThhMzQtN2VhMTg3MTJiNjFmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjQ0MjE2MTY0LCJleHAiOjE2NDQyMTczNjR9.LJIC0trMfOJH1u4q5w3YlVS6ePoCoE7-xhrZAO4Hrs8",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:5000/api/ticket",
 							"protocol": "http",
@@ -429,7 +435,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MjY3NzgwNCwianRpIjoiYzgzNmUwZTMtOTcyZS00YzExLWE3Y2YtMDZjMTMzNWNmZjY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjQyNjc3ODA0LCJleHAiOjE2NDI2NzkwMDR9.No0sHkXHQ12j4kpN5E74hxHv1vA_8MvuH36KfsneTWM",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MzM1NTgxNywianRpIjoiZThmZGEwNDAtNmIzNi00ZDAxLTkyMmUtMTQ2ZWUyODkyOGRkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjQzMzU1ODE3LCJleHAiOjE2NDMzNTcwMTd9.DgBaqkIeSfKVEiq6t3qYnAewNYb-98J6qXTKMuqjeQ8",
 								"type": "text"
 							}
 						],
@@ -614,7 +620,13 @@
 					"name": "get car wash ids",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NDIxNjQyMCwianRpIjoiNTlkNWE4OTYtNDM4OC00ZWMxLTgwMzUtMGExYzQ5NTBmMWRkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNjQ0MjE2NDIwLCJleHAiOjE2NDQyMTc2MjB9.IX9IKL99GxmL7Tzaz_v_diYqKT81KfazmxJjD_rvev4",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:5000/api/car_wash",
 							"protocol": "http",
@@ -664,13 +676,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MjMzNTY1NCwianRpIjoiMjA2OTAzNDctNjU1My00YzViLWE5MWYtYTVjMjlhN2I1NTYwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTEsIm5iZiI6MTY0MjMzNTY1NCwiZXhwIjoxNjQyMzM2ODU0fQ.Z427g1K9wRvMJIrTvZ4aJMrZySN_-UQ-hZd7fLLH3xc",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NDIxNjE2NCwianRpIjoiMGYyMmYxNWMtOTE2Ny00NDk3LThhMzQtN2VhMTg3MTJiNjFmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjQ0MjE2MTY0LCJleHAiOjE2NDQyMTczNjR9.LJIC0trMfOJH1u4q5w3YlVS6ePoCoE7-xhrZAO4Hrs8",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"k-301\",\n    \"owner_id\": 9\n}",
+							"raw": "{\n    \"title\": \"wash-301\",\n    \"address\": \"address\",\n    \"owner_id\": 4\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -744,7 +756,21 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/device",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"device"
+							]
+						}
 					},
 					"response": []
 				},
@@ -785,13 +811,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0MjM0NjA2MCwianRpIjoiNmNmOTQ4N2YtZmRiNy00ZTRiLTgzOTMtMjk5ZTI3YWRiYWRhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTEsIm5iZiI6MTY0MjM0NjA2MCwiZXhwIjoxNjQyMzQ3MjYwfQ.HbN9rbKrTzCzvPV4L3aLClnc1rz8KOE2D1XNaR2bBpM",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NDEzNzUyMCwianRpIjoiNDUwOGI2OTAtMmE3NS00MDAxLThlNzgtZjRhNDIzNzU0MTM3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjQ0MTM3NTIwLCJleHAiOjE2NDQxMzg3MjB9.7dvtUdQ5qnVRU3IlRIbFL-3kZHWr9vjl5mC0yPc44vY",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"code\": 1212,\n    \"car_wash_id\": 111\n}",
+							"raw": "{\n    \"code\": 300,\n    \"car_wash_id\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -902,6 +928,58 @@
 								"api",
 								"device_payment",
 								"34"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "device error",
+			"item": [
+				{
+					"name": "get device error ids",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/device_error",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"device_error"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get device error by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/device_error/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"device_error",
+								"4"
 							]
 						}
 					},

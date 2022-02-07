@@ -10,6 +10,15 @@ def get_car_wash_ids():
     return ids
 
 
+# GET CAR WASH IDS BY OWNER ID
+def get_car_wash_ids_by_owner_id(owner_id):
+    ids = []
+    car_washes = CarWash.query.filter_by(owner_id=owner_id).all()
+    for car_wash in car_washes:
+        ids.append(car_wash.id)
+    return ids
+
+
 # GET CAR WASH BY TITLE
 def get_car_wash_by_title(title):
     car_wash = CarWash.query.filter_by(title=title).first()

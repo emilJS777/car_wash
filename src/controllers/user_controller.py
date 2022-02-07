@@ -36,6 +36,7 @@ def update_user(user_id):
 # DELETE USER
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
+@role_middleware.check_role(["admin"])
 def delete_user(user_id):
     res = user_service.delete_user(user_id=user_id)
     return res
