@@ -5,9 +5,13 @@ from flask import g
 
 # GET CAR WASH IDS
 def get_car_wash_ids():
-    # GET CAR WASH IDS BY OWNER ID IF G ROLE NAME IS OWNER, ELSE GET ALL IDS
-    car_wash_ids = car_wash_service_db.get_car_wash_ids_by_owner_id(owner_id=g.user_id) if g.role_name == "owner" \
-        else car_wash_service_db.get_car_wash_ids()
+    car_wash_ids = car_wash_service_db.get_car_wash_ids()
+    return response(True, car_wash_ids, 200)
+
+
+# GET CAR WASH IDS BY OWNER ID
+def get_car_wash_ids_by_owner_id(owner_id):
+    car_wash_ids = car_wash_service_db.get_car_wash_ids_by_owner_id(owner_id=owner_id)
     return response(True, car_wash_ids, 200)
 
 
@@ -22,6 +26,18 @@ def get_car_wash_by_id(car_wash_id):
     return response(True, {'id': car_wash.id, 'title': car_wash.title,
                            'creation_date': car_wash.creation_date, 'address': car_wash.address,
                            'owner_id': car_wash.owner_id}, 200)
+
+
+# GET CAR WASH BY ID BY OWNER ID
+def get_car_wash_by_id_by_owner_id(car_wash_id, owner_id):
+    # GET CAR WASH BY ID AND OWNER ID AND VERIFY. IF NOT FOUND RETURN NOT FOUND
+    car_wash = car_wash_service_db.get_car_wash_by_id_by_owner_id(car_wash_id=car_wash_id, owner_id=owner_id)
+    if not car_wash:
+        return response(False, {'msg': 'car wash not found'}, 404)
+
+    # ELSE RETURN CAR WASH FIELDS AND OK
+    return response(True, {'id': car_wash.id, 'title': car_wash.title,
+                           'creation_date': car_wash.creation_date, 'address': car_wash.address}, 200)
 
 
 # CREATE CAR WASH

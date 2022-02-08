@@ -31,6 +31,12 @@ def get_car_wash_by_id(car_wash_id):
     return car_wash
 
 
+# GET CAR WASH BY ID BY OWNER ID
+def get_car_wash_by_id_by_owner_id(car_wash_id, owner_id):
+    car_wash = CarWash.query.filter_by(id=car_wash_id, owner_id=owner_id)
+    return car_wash
+
+
 # CREATE CAR WASH
 def create_car_wash(title, address, owner_id):
     car_wash = CarWash(title=title, address=address, owner_id=owner_id)

@@ -1,14 +1,17 @@
 from src.services import car_wash_service
 from flask import request, g
-from src.middlewares import auth_middleware, role_middleware, ticket_middleware
+from src.middlewares import auth_middleware, role_middleware, ticket_middleware, expiration_middleware
 
 
 # GET CAR WASH IDS
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin", "engineer", "owner"])
+@expiration_middleware.check_expiration(["owner"])
 def get_car_wash_ids():
-    res = car_wash_service.get_car_wash_ids()
+    res = car_wash_service.get_car_wash_ids_by_owner_id(owner_id=g.user_id) \
+        if g.role_name == "owner" else \
+        car_wash_service.get_car_wash_ids()
     return res
 
 
@@ -16,8 +19,11 @@ def get_car_wash_ids():
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin", "engineer", "owner"])
+@expiration_middleware.check_expiration(["owner"])
 def get_car_wash_by_id(car_wash_id):
-    res = car_wash_service.get_car_wash_by_id(car_wash_id=car_wash_id)
+    res = car_wash_service.get_car_wash_by_id_by_owner_id(car_wash_id=car_wash_id, owner_id=g.user_id) \
+        if g.role_name == "owner" else \
+        car_wash_service.get_car_wash_by_id(car_wash_id=car_wash_id)
     return res
 
 
