@@ -7,9 +7,11 @@ from flask import g
 # GET DEVICE IDS
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
-@role_middleware.check_role(["admin", "engineer"])
+@role_middleware.check_role(["admin", "engineer", "owner"])
 def get_device_ids():
-    res = device_service.get_device_ids()
+    res = device_service.get_device_ids_by_owner_id(owner_id=g.user_id) \
+        if g.role_name == "owner" \
+        else device_service.get_device_ids()
     return res
 
 
@@ -18,6 +20,7 @@ def get_device_ids():
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin", "engineer", "owner"])
 def get_device_ids_by_car_wash_id(car_wash_id):
+    print(g.role_name)
     res = device_service.get_device_ids_by_car_wash_id_owner_id(car_wash_id=car_wash_id, owner_id=g.user_id) \
         if g.role_name == 'owner' \
         else device_service.get_device_ids_by_car_wash_id(car_wash_id=car_wash_id)

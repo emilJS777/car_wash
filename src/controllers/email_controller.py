@@ -2,7 +2,7 @@ from src.services import email_service
 from flask import request
 from flask_expects_json import expects_json
 from src.validators import email_validator
-from src.middlewares import auth_middleware, role_middleware, ticket_middleware, validator_middleware
+from src.middlewares import auth_middleware, role_middleware, ticket_middleware
 
 
 # GET EMAIL BY TICKET ID
