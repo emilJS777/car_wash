@@ -1,6 +1,7 @@
 from src.services import device_service
 from flask import request
 from src.middlewares import auth_middleware, role_middleware, ticket_middleware
+from flask import g
 
 
 # GET DEVICE IDS
@@ -12,10 +13,21 @@ def get_device_ids():
     return res
 
 
+# GET DEVICE IDS BY CAR WASH ID
+@auth_middleware.check_authorize
+@ticket_middleware.check_active_ticket
+@role_middleware.check_role(["admin", "engineer", "owner"])
+def get_device_ids_by_car_wash_id(car_wash_id):
+    res = device_service.get_device_ids_by_car_wash_id_owner_id(car_wash_id=car_wash_id, owner_id=g.user_id) \
+        if g.role_name == 'owner' \
+        else device_service.get_device_ids_by_car_wash_id(car_wash_id=car_wash_id)
+    return res
+
+
 # GET DEVICE BY ID
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
-@role_middleware.check_role(["admin", "engineer"])
+@role_middleware.check_role(["admin", "engineer", "owner"])
 def get_device_by_id(device_id):
     res = device_service.get_device_by_id(device_id=device_id)
     return res

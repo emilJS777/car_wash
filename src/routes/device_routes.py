@@ -7,6 +7,11 @@ app.add_url_rule("/api/device",
                  view_func=device_controller.get_device_ids,
                  methods=["GET"])
 
+# GET DEVICE IDS BY CAR WASH ID
+app.add_url_rule("/api/device/by_car_wash_id/<int:car_wash_id>",
+                 view_func=device_controller.get_device_ids_by_car_wash_id,
+                 methods=["GET"])
+
 # GET DEVICE BY ID
 app.add_url_rule("/api/device/<int:device_id>",
                  view_func=device_controller.get_device_by_id,

@@ -11,6 +11,15 @@ def get_device_ids():
     return ids
 
 
+# GET DEVICE IDS BY CAR WASH ID
+def get_device_ids_by_car_wash_id(car_wash_id):
+    ids = []
+    devices = Device.query.filter_by(car_wash_id=car_wash_id).all()
+    for device in devices:
+        ids.append(device.id)
+    return ids
+
+
 # GET Device BY TITLE
 def get_device_by_code(code):
     device = Device.query.filter_by(code=code).first()

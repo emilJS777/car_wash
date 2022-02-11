@@ -7,7 +7,7 @@ from src.middlewares import auth_middleware, role_middleware, ticket_middleware,
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin", "engineer", "owner"])
-@expiration_middleware.check_expiration(["owner"])
+# @expiration_middleware.check_expiration(["owner"])
 def get_car_wash_ids():
     res = car_wash_service.get_car_wash_ids_by_owner_id(owner_id=g.user_id) \
         if g.role_name == "owner" else \
@@ -19,7 +19,7 @@ def get_car_wash_ids():
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin", "engineer", "owner"])
-@expiration_middleware.check_expiration(["owner"])
+# @expiration_middleware.check_expiration(["owner"])
 def get_car_wash_by_id(car_wash_id):
     res = car_wash_service.get_car_wash_by_id_by_owner_id(car_wash_id=car_wash_id, owner_id=g.user_id) \
         if g.role_name == "owner" else \

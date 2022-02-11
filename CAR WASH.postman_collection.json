@@ -843,7 +843,7 @@
 					"response": []
 				},
 				{
-					"name": "update car wash",
+					"name": "update device",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -875,6 +875,31 @@
 							"path": [
 								"api",
 								"device",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get device ids by car wash id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/device/by_car_wash_id/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"device",
+								"by_car_wash_id",
 								"1"
 							]
 						}
