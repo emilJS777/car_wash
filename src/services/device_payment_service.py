@@ -19,3 +19,15 @@ def get_device_payment_by_id(device_payment_id):
     return response(True, {'id': device_payment.id, 'device_id': device_payment.device_id,
                            'price': device_payment.price, 'currency': device_payment.currency,
                            'creation_date': device_payment.creation_date, 'type': device_payment.type}, 200)
+
+
+# CREATE DEVICE PAYMENT
+def create_device_payment(device_code, price, currency):
+    # GET DEVICE BY CODE AND VERIFY. IF NOT FOUND RETURN NOT FOUND
+    device = device_service_db.get_device_by_code(code=device_code)
+    if not device:
+        return response(False, {'msg': 'device not found'}, 404)
+
+    # ELSE CREATE DEVICE PAYMENT END RETURN OK
+    device_payment = device_payment_service_db.create_device_payment(device_id=device.id, price=price, currency=currency, type='cash')
+    return response(True, {'id': device_payment.id, 'device_id': device.id, 'price': device_payment.price}, 200)

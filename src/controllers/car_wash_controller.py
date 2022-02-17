@@ -30,7 +30,7 @@ def get_car_wash_by_id(car_wash_id):
 # CREATE CAR WASH
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
-@role_middleware.check_role(["engineer"])
+@role_middleware.check_role(["admin", "engineer"])
 def create_car_wash():
     req = request.get_json()
     res = car_wash_service.create_car_wash(title=req['title'], address=req['address'], owner_id=req['owner_id'])
@@ -40,7 +40,7 @@ def create_car_wash():
 # UPDATE CAR WASH
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
-@role_middleware.check_role(["engineer"])
+@role_middleware.check_role(["admin", "engineer"])
 def update_car_wash(car_wash_id):
     req = request.get_json()
     res = car_wash_service.update_car_wash(car_wash_id=car_wash_id, title=req['title'],

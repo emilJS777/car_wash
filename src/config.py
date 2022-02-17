@@ -23,6 +23,10 @@ db.init_app(app)
 db.create_all()
 migrate = Migrate(app, db)
 
+
+# QR IMG FILE PATH
+app.config["QR_IMG_PATH"] = "src/_img/qr"
+
 # CONNECT JWT CONFIG
 app.config["JWT_SECRET_KEY"] = "H^&67KCsn@77G"
 app.config["JWT_ACCESS_EXP"] = 20

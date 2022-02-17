@@ -39,7 +39,7 @@ def get_device_by_id(device_id):
 # CREATE DEVICE
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
-@role_middleware.check_role(["engineer"])
+@role_middleware.check_role(["admin", "engineer"])
 def create_device():
     req = request.get_json()
     res = device_service.create_device(code=req['code'], car_wash_id=req['car_wash_id'])
@@ -49,7 +49,7 @@ def create_device():
 # UPDATE DEVICE
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
-@role_middleware.check_role(["engineer"])
+@role_middleware.check_role(["admin", "engineer"])
 def update_device(device_id):
     req = request.get_json()
     res = device_service.update_device(device_id=device_id, code=req['code'], car_wash_id=req['car_wash_id'])
