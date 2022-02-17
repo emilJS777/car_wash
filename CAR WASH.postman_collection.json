@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"owner1234\",\n    \"password\": \"owner1234\"\n}",
+							"raw": "{\n    \"name\": \"admin123\",\n    \"password\": \"admin123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -811,13 +811,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NDEzNzUyMCwianRpIjoiNDUwOGI2OTAtMmE3NS00MDAxLThlNzgtZjRhNDIzNzU0MTM3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjQ0MTM3NTIwLCJleHAiOjE2NDQxMzg3MjB9.7dvtUdQ5qnVRU3IlRIbFL-3kZHWr9vjl5mC0yPc44vY",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NDU2NTIwMCwianRpIjoiMmU4NDI3NjAtMjcxMC00YTM3LTk4MTYtOTE0MTVlMzQwMGQxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjQ0NTY1MjAwLCJleHAiOjE2NDQ1NjY0MDB9.CA2ZSb71EOseQqjkhFPh2-tbwTc8ZX4fAWYaZg6Hu3I",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"code\": 300,\n    \"car_wash_id\": 1\n}",
+							"raw": "{\n    \"code\": 320,\n    \"owner_id\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -855,7 +855,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"code\": 1231,\n    \"car_wash_id\": 1\n}",
+							"raw": "{\n    \"code\": 1231\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -882,7 +882,7 @@
 					"response": []
 				},
 				{
-					"name": "get device ids by car wash id",
+					"name": "get device ids by owner id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -957,6 +957,44 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "create device payment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://144.91.119.81:5000/api/device_payment/create?device_code=300&currency=amd&price=200.00",
+							"protocol": "http",
+							"host": [
+								"144",
+								"91",
+								"119",
+								"81"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"device_payment",
+								"create"
+							],
+							"query": [
+								{
+									"key": "device_code",
+									"value": "300"
+								},
+								{
+									"key": "currency",
+									"value": "amd"
+								},
+								{
+									"key": "price",
+									"value": "200.00"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1005,6 +1043,75 @@
 								"api",
 								"device_error",
 								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "qr",
+			"item": [
+				{
+					"name": "create qr",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"qr title\",\n    \"url\": \"12doidnmof2eofn2ofn\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/qr",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"qr"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get current qr",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete qr",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/qr/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"qr",
+								"1"
 							]
 						}
 					},

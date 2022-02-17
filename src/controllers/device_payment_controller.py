@@ -7,7 +7,7 @@ from flask import request
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(['owner'])
-@expiration_middleware.check_expiration(["owner"])
+# @expiration_middleware.check_expiration(["owner"])
 def get_device_payment_ids():
     res = device_payment_service.get_device_payment_ids()
     return res
@@ -17,7 +17,7 @@ def get_device_payment_ids():
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(['owner'])
-@expiration_middleware.check_expiration(["owner"])
+# @expiration_middleware.check_expiration(["owner"])
 def get_device_payment_by_id(device_payment_id):
     res = device_payment_service.get_device_payment_by_id(device_payment_id=device_payment_id)
     return res

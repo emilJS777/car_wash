@@ -5,13 +5,13 @@ from datetime import datetime
 class Device(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.Integer, nullable=False)
-    car_wash_id = db.Column(db.Integer, nullable=True)
+    owner_id = db.Column(db.Integer, nullable=True)
     last_update = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, code, car_wash_id):
+    def __init__(self, code, owner_id):
         self.code = code,
-        self.car_wash_id = car_wash_id
+        self.owner_id = owner_id
 
     # SAVE DB SELF
     def save_db(self):
