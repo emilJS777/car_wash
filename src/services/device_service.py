@@ -34,7 +34,7 @@ def get_device_by_id(device_id):
 
     # ELSE RETURN DEVICE FIELDS
     return response(True, {'id': device.id, 'code': device.code,
-                           'car_wash_id': device.car_wash_id, 'last_update': device.last_update}, 200)
+                           'owner_id': device.owner_id, 'last_update': device.last_update}, 200)
 
 
 # UPDATE DEVICE
