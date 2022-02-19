@@ -4,32 +4,32 @@ from src import mail, app
 
 
 # GET EMAIL BY ID
-def get_email_by_id(email_id):
+def get_email_by_id(email_id) -> Email:
     email = Email.query.filter_by(id=email_id).first()
     return email
 
 
 # GET EMAIL BY TICKET ID
-def get_email_by_ticket_id(ticket_id):
+def get_email_by_ticket_id(ticket_id) -> Email:
     email = Email.query.filter_by(ticket_id=ticket_id).first()
     return email
 
 
 # CREATE EMAIL
-def create_email(ticket_id, address):
+def create_email(ticket_id, address) -> Email:
     email = Email(ticket_id=ticket_id, address=address)
     email.save_db()
     return email
 
 
 # GET EMAIL BY ADDRESS
-def get_email_by_address(address):
+def get_email_by_address(address) -> Email:
     email = Email.query.filter_by(address=address).first()
     return email
 
 
 # SEND TICKET CODE
-def send_ticket_code_by_email_id(email_id, ticket_code):
+def send_ticket_code_by_email_id(email_id, ticket_code) -> Email:
     email = Email.query.filter_by(id=email_id).first()
     msg = Message('Hello', sender=app.config['MAIL_USERNAME'], recipients=[email.address])
     msg.html = f"Your ticket code <b>{ticket_code}</b>"
