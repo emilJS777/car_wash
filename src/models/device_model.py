@@ -4,8 +4,9 @@ from datetime import datetime
 
 class Device(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    code = db.Column(db.Integer, nullable=False)
+    code = db.Column(db.String(120), nullable=False)
     owner_id = db.Column(db.Integer, nullable=True)
+    active = db.Column(db.Boolean, default=False)
     last_update = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR

@@ -33,7 +33,7 @@ def get_device_by_id(device_id):
         return response(False, {'msg': 'device not found'}, 404)
 
     # ELSE RETURN DEVICE FIELDS
-    return response(True, {'id': device.id, 'code': device.code,
+    return response(True, {'id': device.id, 'code': device.code, 'active': device.active,
                            'owner_id': device.owner_id, 'last_update': device.last_update}, 200)
 
 

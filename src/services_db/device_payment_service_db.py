@@ -1,10 +1,11 @@
+from sqlalchemy import desc
 from src.models.device_payment_model import DevicePayment
 
 
 # GET DEVICE INFO IDS
-def get_device_payment_ids():
+def get_device_payment_ids(owner_id):
     ids = []
-    devices_payment = DevicePayment.query.all()
+    devices_payment = DevicePayment.query.filter_by(owner_id=owner_id).order_by(desc('creation_date')).all()
     for device_payment in devices_payment:
         ids.append(device_payment.id)
     return ids
@@ -17,7 +18,7 @@ def get_device_payment_by_id(device_payment_id):
 
 
 # CREATE DEVICE PAYMENT
-def create_device_payment(device_id, price, currency, type):
-    device_payment = DevicePayment(device_id=device_id, price=price, currency=currency, type=type)
+def create_device_payment(device_id, price, currency, type, owner_id):
+    device_payment = DevicePayment(device_id=device_id, price=price, currency=currency, type=type, owner_id=owner_id)
     device_payment.save_db()
     return device_payment

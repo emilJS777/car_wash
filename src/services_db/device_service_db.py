@@ -1,11 +1,12 @@
 from src.models.device_model import Device
 from datetime import datetime
+from sqlalchemy import desc
 
 
 # GET Device IDS
 def get_device_ids():
     ids = []
-    devices = Device.query.all()
+    devices = Device.query.order_by(desc(Device.last_update)).all()
     for device in devices:
         ids.append(device.id)
     return ids
@@ -14,7 +15,7 @@ def get_device_ids():
 # GET DEVICE IDS BY CAR WASH ID
 def get_device_ids_by_owner(owner_id):
     ids = []
-    devices = Device.query.filter_by(owner_id=owner_id).all()
+    devices = Device.query.filter_by(owner_id=owner_id).order_by(desc(Device.last_update)).all()
     for device in devices:
         ids.append(device.id)
     return ids
@@ -39,10 +40,26 @@ def create_device(code, owner_id):
     return device
 
 
-# UPDATE CAR WASH
+# UPDATE DEVICE
 def update_device(device_id, code):
     device = Device.query.filter_by(id=device_id).first()
     device.code = code
     device.last_update = datetime.utcnow()
+    device.update_db()
+    return device
+
+
+# ACTIVATE DEVICE
+def activate_device(device_id):
+    device = Device.query.filter_by(id=device_id).first()
+    device.active = True
+    device.update_db()
+    return device
+
+
+# DEACTIVATE DEVICE
+def deactivate_device(device_id):
+    device = Device.query.filter_by(id=device_id).first()
+    device.active = False
     device.update_db()
     return device

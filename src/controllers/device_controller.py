@@ -1,7 +1,9 @@
 from src.services import device_service
 from flask import request
 from src.middlewares import auth_middleware, role_middleware, ticket_middleware
+from src.validators import device_validator
 from flask import g
+from flask_expects_json import expects_json
 
 
 # GET DEVICE IDS
@@ -37,6 +39,7 @@ def get_device_by_id(device_id):
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin", "engineer"])
+@expects_json(device_validator.device_schema)
 def create_device():
     req = request.get_json()
     res = device_service.create_device(code=req['code'], owner_id=req['owner_id'])
