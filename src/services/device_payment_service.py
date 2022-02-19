@@ -19,7 +19,8 @@ def get_device_payment_by_id(device_payment_id):
     # ELSE RETURN DEVICE PAYMENT FIELDS AND OK
     return response(True, {'id': device_payment.id, 'device_id': device_payment.device_id,
                            'price': device_payment.price, 'currency': device_payment.currency,
-                           'creation_date': device_payment.creation_date, 'type': device_payment.type}, 200)
+                           'creation_date': device_payment.creation_date, 'type': device_payment.type,
+                           'device_code': device_payment.device_code}, 200)
 
 
 # CREATE DEVICE PAYMENT
@@ -36,5 +37,5 @@ def create_device_payment(device_code, price, currency):
     # ELSE CREATE DEVICE PAYMENT END RETURN OK
     device_payment = device_payment_service_db.create_device_payment(device_id=device.id, price=price,
                                                                      currency=currency, type='cash',
-                                                                     owner_id=device.owner_id)
+                                                                     owner_id=device.owner_id, device_code=device.code)
     return response(True, {'id': device_payment.id, 'device_id': device.id, 'price': device_payment.price}, 200)

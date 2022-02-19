@@ -18,7 +18,9 @@ def get_device_payment_by_id(device_payment_id) -> DevicePayment:
 
 
 # CREATE DEVICE PAYMENT
-def create_device_payment(device_id, price, currency, type, owner_id) -> DevicePayment:
-    device_payment = DevicePayment(device_id=device_id, price=price, currency=currency, type=type, owner_id=owner_id)
+def create_device_payment(device_id, price, currency, type, owner_id, device_code) -> DevicePayment:
+    device_payment = DevicePayment(device_id=device_id, price=price,
+                                   currency=currency, type=type,
+                                   owner_id=owner_id, device_code=device_code)
     device_payment.save_db()
     return device_payment
