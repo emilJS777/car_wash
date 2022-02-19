@@ -9,17 +9,15 @@ class DevicePayment(db.Model):
     price = db.Column(db.Numeric(8, 2), nullable=False)
     currency = db.Column(db.String(4), nullable=False)
     type = db.Column(db.String(120), nullable=False)
-    device_code = db.Column(db.String(120), nullable=False)
     creation_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, device_id, price, currency, type, owner_id, device_code):
+    def __init__(self, device_id, price, currency, type, owner_id):
         self.device_id = device_id
         self.owner_id = owner_id
         self.price = price
         self.currency = currency
         self.type = type
-        self.device_code = device_code
 
     # SAVE DB SELF
     def save_db(self):
