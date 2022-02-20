@@ -10,7 +10,7 @@ class Device(db.Model):
     last_update = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, code, owner_id):
+    def __init__(self, code: str, owner_id: int):
         self.code = code,
         self.owner_id = owner_id
 

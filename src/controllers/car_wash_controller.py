@@ -20,7 +20,7 @@ def get_car_wash_ids():
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin", "engineer", "owner"])
 # @expiration_middleware.check_expiration(["owner"])
-def get_car_wash_by_id(car_wash_id):
+def get_car_wash_by_id(car_wash_id: int):
     res = car_wash_service.get_car_wash_by_id_by_owner_id(car_wash_id=car_wash_id, owner_id=g.user_id) \
         if g.role_name == "owner" else \
         car_wash_service.get_car_wash_by_id(car_wash_id=car_wash_id)
@@ -41,7 +41,7 @@ def create_car_wash():
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin", "engineer"])
-def update_car_wash(car_wash_id):
+def update_car_wash(car_wash_id: int):
     req = request.get_json()
     res = car_wash_service.update_car_wash(car_wash_id=car_wash_id, title=req['title'],
                                            address=req['address'], owner_id=req['owner_id'])

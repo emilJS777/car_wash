@@ -1,4 +1,5 @@
 from src.services_db import qr_service_db
+from src.services_db.qr_service_db import Qr
 from src._response import response
 import qrcode
 from datetime import datetime
@@ -6,7 +7,7 @@ import base64
 
 
 # CREATE QR
-def create_qr(title, url, img_path):
+def create_qr(title: str, url: str, img_path: str):
     # GET CURRENT QR AND VERIFY IF EXIST RETURN CONFLICT
     if qr_service_db.get_current_qr():
         return response(False, {'msg': 'qr code exist'}, 409)
@@ -20,14 +21,14 @@ def create_qr(title, url, img_path):
     image.save(image_path)
 
     # SAVE QR TITLE AND IMAGE PATH ON DB
-    qr = qr_service_db.create_qr(title=title, img_path=image_path)
+    qr: Qr = qr_service_db.create_qr(title=title, img_path=image_path)
     return response(True, {'id': qr.id, 'title': qr.title, 'creation_date': qr.creation_date}, 200)
 
 
 # GET CURRENT QR
 def get_current_qr():
     # GET QR AND VERIFY IF NOT FOUND RETURN NOT FOUND
-    qr = qr_service_db.get_current_qr()
+    qr: Qr = qr_service_db.get_current_qr()
     if not qr:
         return response(False, {'msg': 'qr not found'}, 404)
 
@@ -38,7 +39,7 @@ def get_current_qr():
 
 
 # DELETE QR BY ID
-def delete_qr_by_id(qr_id):
+def delete_qr_by_id(qr_id: int):
     # GET Qr BY ID AND VErIFY ID NoT FOUND REtuRN NOT FOUND
     if not qr_service_db.get_qr_by_id(qr_id=qr_id):
         return response(False, {'msg': "qr not found"}, 404)

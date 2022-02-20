@@ -10,7 +10,7 @@ class Auth(db.Model):
     refresh_token = db.Column(db.String(400), unique=True, nullable=True)
 
     # CONSTRUCTOR
-    def __init__(self, user_id):
+    def __init__(self, user_id: int):
         self.user_id = user_id
 
     # SAVE DB SELF

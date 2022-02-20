@@ -10,7 +10,7 @@ class CarWash(db.Model):
     creation_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, title, address, owner_id):
+    def __init__(self, title: str, address: str, owner_id: int):
         self.title = title
         self.address = address
         self.owner_id = owner_id

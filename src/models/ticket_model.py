@@ -11,7 +11,7 @@ class Ticket(db.Model):
     expiration_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, role_id):
+    def __init__(self, role_id: int):
         self.role_id = role_id
 
     # SAVE DB SELF

@@ -7,7 +7,7 @@ class Email(db.Model):
     address = db.Column(db.String(50), unique=True, nullable=False)
 
     # CONSTRUCTOR
-    def __init__(self, ticket_id, address):
+    def __init__(self, ticket_id: int, address: str):
         self.ticket_id = ticket_id
         self.address = address
 

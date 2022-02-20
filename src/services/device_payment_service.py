@@ -1,11 +1,11 @@
 from src.services_db import device_payment_service_db, device_service_db
 from src._response import response
+from typing import List
 
 
 # GET DEVICE PAYMENT IDS
-def get_device_payment_ids(owner_id):
-    device_payment_ids = device_payment_service_db.get_device_payment_ids(owner_id=owner_id)
-
+def get_device_payment_ids(owner_id: int):
+    device_payment_ids: List[int] = device_payment_service_db.get_device_payment_ids(owner_id=owner_id)
     return response(True, device_payment_ids, 200)
 
 

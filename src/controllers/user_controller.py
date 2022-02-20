@@ -8,7 +8,7 @@ from src.middlewares import auth_middleware, role_middleware, ticket_middleware
 # GET USER BY ID
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
-def get_user_by_id(user_id):
+def get_user_by_id(user_id: int):
     res = user_service.get_user_by_id(user_id=user_id)
     return res
 
@@ -26,7 +26,7 @@ def create_user():
 # UPDATE USER
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
-def update_user(user_id):
+def update_user(user_id: int):
     req = request.get_json()
     res = user_service.update_user(user_id=user_id, name=req['name'],
                                    first_name=req['first_name'], last_name=req['last_name'])
@@ -37,6 +37,6 @@ def update_user(user_id):
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin"])
-def delete_user(user_id):
+def delete_user(user_id: int):
     res = user_service.delete_user(user_id=user_id)
     return res

@@ -21,7 +21,7 @@ def get_device_ids():
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin", "engineer"])
-def get_device_ids_by_owner_id(owner_id):
+def get_device_ids_by_owner_id(owner_id: int):
     res = device_service.get_device_ids_by_owner_id(owner_id=owner_id)
     return res
 
@@ -30,7 +30,7 @@ def get_device_ids_by_owner_id(owner_id):
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin", "engineer", "owner"])
-def get_device_by_id(device_id):
+def get_device_by_id(device_id: int):
     res = device_service.get_device_by_id(device_id=device_id)
     return res
 
@@ -50,7 +50,7 @@ def create_device():
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(["admin", "engineer"])
-def update_device(device_id):
+def update_device(device_id: int):
     req = request.get_json()
     res = device_service.update_device(device_id=device_id, code=req['code'])
     return res

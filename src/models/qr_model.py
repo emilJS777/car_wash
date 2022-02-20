@@ -9,7 +9,7 @@ class Qr(db.Model):
     creation_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, title, img_path):
+    def __init__(self, title: str, img_path: str):
         self.title = title
         self.img_path = img_path
 

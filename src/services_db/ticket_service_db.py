@@ -1,12 +1,13 @@
 from src.models.ticket_model import Ticket
 import random
 import string
+from typing import List
 
 
 # GET TICKET IDS BY ROLE ID
-def get_tickets_by_role_id(role_id) -> list:
-    tickets_arr = list([])
-    tickets = list(Ticket.query.order_by(Ticket.expiration_date).filter_by(role_id=role_id).all())
+def get_tickets_by_role_id(role_id: int) -> list:
+    tickets_arr = []
+    tickets: List[Ticket] = Ticket.query.order_by(Ticket.expiration_date).filter_by(role_id=role_id).all()
     for ticket in tickets:
         tickets_arr.append({'id': ticket.id, 'role_id': ticket.role_id, 'expiration_date': ticket.expiration_date,
                             'code': ticket.code, 'active': ticket.active, 'user_id': ticket.user_id})
@@ -14,26 +15,26 @@ def get_tickets_by_role_id(role_id) -> list:
 
 
 # GET TICKET BY ID
-def get_ticket_by_id(ticket_id) -> Ticket:
-    ticket = Ticket.query.filter_by(id=ticket_id).first()
+def get_ticket_by_id(ticket_id: int) -> Ticket:
+    ticket: Ticket = Ticket.query.filter_by(id=ticket_id).first()
     return ticket
 
 
 # GET TICKET BY USER ID
-def get_ticket_by_user_id(user_id) -> Ticket:
-    ticket = Ticket.query.filter_by(user_id=user_id).first()
+def get_ticket_by_user_id(user_id: int) -> Ticket:
+    ticket: Ticket = Ticket.query.filter_by(user_id=user_id).first()
     return ticket
 
 
 # GET TICKET BY CODE
-def get_ticket_by_code(code) -> Ticket:
-    ticket = Ticket.query.filter_by(code=code).first()
+def get_ticket_by_code(code: str) -> Ticket:
+    ticket: Ticket = Ticket.query.filter_by(code=code).first()
     return ticket
 
 
 # CREATE TICKET
-def create_ticket(role_id, code=None) -> Ticket:
-    ticket = Ticket(role_id=role_id)
+def create_ticket(role_id: int, code=None) -> Ticket:
+    ticket: Ticket = Ticket(role_id=role_id)
     ticket.code = code
     ticket.save_db()
     return ticket

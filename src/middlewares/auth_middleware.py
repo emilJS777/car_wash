@@ -3,6 +3,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from src._response import response
 from flask import request, g
 from src.services_db import auth_service_db, user_service_db
+from src.services_db.auth_service_db import Auth
 
 
 # CHECk AUTHORIZE BY TOKEN
@@ -11,7 +12,7 @@ def check_authorize(f):
     @jwt_required()
     def decorated_function(*args, **kwargs):
         # FIND USER AUTH FROM DB & CHECK IS A ACCESS_TOKEN. IF TOKENS MATCH, ASSIGN g.user_id user_id
-        user_auth = auth_service_db.get_auth_by_user_id(user_id=get_jwt_identity())
+        user_auth: Auth = auth_service_db.get_auth_by_user_id(user_id=get_jwt_identity())
         if user_auth.access_token == request.headers['authorization'].split(' ')[1]:
 
             # CHECK USER ON DB

@@ -18,15 +18,15 @@ def get_device_payment_ids():
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(['owner'])
 # @expiration_middleware.check_expiration(["owner"])
-def get_device_payment_by_id(device_payment_id):
+def get_device_payment_by_id(device_payment_id: int):
     res = device_payment_service.get_device_payment_by_id(device_payment_id=device_payment_id)
     return res
 
 
 # DEVICE PAYMENT
 def create_device_payment():
-    device_code = request.args['device_code']
-    currency = request.args['currency']
-    price = request.args['price']
+    device_code: str = request.args['device_code']
+    currency: str = request.args['currency']
+    price: float = float(request.args['price'])
     res = device_payment_service.create_device_payment(device_code=device_code, currency=currency, price=price)
     return res

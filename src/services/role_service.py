@@ -1,17 +1,19 @@
 from src.services_db import role_service_db
+from src.services_db.role_service_db import Role
 from src._response import response
+from typing import List
 
 
 # GET ROLE IDS
 def get_role_ids():
-    ids = role_service_db.get_role_ids()
+    ids: List[int] = role_service_db.get_role_ids()
     return response(True, ids, 200)
 
 
 # GET ROLE BY ID
-def get_role_by_id(role_id):
+def get_role_by_id(role_id: int):
     # GET ROLE BY ID AND VERIFY. IF NOT FOUND RETURN NOT FOUND
-    role = role_service_db.get_role_by_id(role_id=role_id)
+    role: Role = role_service_db.get_role_by_id(role_id=role_id)
     if not role:
         return response(False, {'msg': 'role not found'}, 404)
 
@@ -20,18 +22,18 @@ def get_role_by_id(role_id):
 
 
 # CREATE ROLE
-def create_role(name):
+def create_role(name: str):
     # GET ROLE BY NAME AND VERIFY. IF FOUND RETURN CONFLICT
     if role_service_db.get_role_by_name(name=name):
         return response(False, {'msg': 'role by this name exist'}, 409)
 
     # ELSE CREATE ROLE BY THIS NAME AND RETURN OK
-    role = role_service_db.create_role(name=name)
+    role: Role = role_service_db.create_role(name=name)
     return response(True, {'msg': f'role by name {role.name} successfully created!'}, 201)
 
 
 # UPDATE ROLE
-def update_role(role_id, name):
+def update_role(role_id: int, name: str):
     # GET ROLE BY ID AND VERIFY. IF NOT FOUND RETURN NOT FOUND
     if not role_service_db.get_role_by_id(role_id=role_id):
         return response(False, {'msg': 'role not found'}, 404)
@@ -42,7 +44,7 @@ def update_role(role_id, name):
 
 
 # DELETE ROLE
-def delete_role(role_id):
+def delete_role(role_id: int):
     # GET ROLE BY ID AND VERIFY. IF NOT FOUND RETURN NOT FOUND
     if not role_service_db.get_role_by_id(role_id=role_id):
         return response(False, {'msg': 'role not found'}, 404)

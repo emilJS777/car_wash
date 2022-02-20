@@ -10,7 +10,7 @@ class User(db.Model):
     password_hash = db.Column(db.String(120), nullable=False)
 
     # CONSTRUCTOR
-    def __init__(self, name, password, first_name, last_name):
+    def __init__(self, name: str, password: str, first_name: str, last_name: str):
         self.name = name
         self.password_hash = generate_password_hash(password)
         self.first_name = first_name

@@ -13,6 +13,6 @@ def get_device_error_ids():
 # GET DEVICE ERROR BY ID
 @auth_middleware.check_authorize
 @role_middleware.check_role(["admin"])
-def get_device_error_by_id(device_error_id):
+def get_device_error_by_id(device_error_id: int):
     res = device_error_service.get_device_error_by_id(device_error_id=device_error_id)
     return res

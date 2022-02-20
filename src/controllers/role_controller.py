@@ -9,7 +9,7 @@ def get_role_ids():
 
 
 # GET ROLE BY ID
-def get_role_by_id(role_id):
+def get_role_by_id(role_id: int):
     res = role_service.get_role_by_id(role_id=role_id)
     return res
 
@@ -22,13 +22,13 @@ def create_role():
 
 
 # UPDATE ROLE
-def update_role(role_id):
+def update_role(role_id: int):
     req = request.get_json()
     res = role_service.update_role(role_id=role_id, name=req['name'])
     return res
 
 
 # DELETE ROLE
-def delete_role(role_id):
+def delete_role(role_id: int):
     res = role_service.delete_role(role_id=role_id)
     return res

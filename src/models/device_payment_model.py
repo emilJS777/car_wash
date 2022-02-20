@@ -12,7 +12,7 @@ class DevicePayment(db.Model):
     creation_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, device_id, price, currency, type, owner_id):
+    def __init__(self, device_id: int, price: float, currency: str, type: str, owner_id: int):
         self.device_id = device_id
         self.owner_id = owner_id
         self.price = price

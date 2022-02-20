@@ -6,7 +6,7 @@ class Role(db.Model):
     name = db.Column(db.String(80), unique=True, nullable=False)
 
     # CONSTRUCTOR
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name
 
     # SAVE DB SELF

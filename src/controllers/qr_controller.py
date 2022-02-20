@@ -24,6 +24,6 @@ def create_qr():
 # DELETE QR BY ID
 @auth_middleware.check_authorize
 @role_middleware.check_role(["admin"])
-def delete_qr(qr_id):
+def delete_qr(qr_id: int):
     res = qr_service.delete_qr_by_id(qr_id=qr_id)
     return res
