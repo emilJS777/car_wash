@@ -1,6 +1,7 @@
 from src import logger
-from src.services_db import role_service_db, ticket_service_db
-from src.models.ticket_model import Ticket
+from src.ticket import ticket_service_db
+from src.role import role_service_db
+from src.ticket.ticket_model import Ticket
 
 
 class Initializer:
