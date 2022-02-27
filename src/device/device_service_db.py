@@ -64,3 +64,16 @@ def deactivate_device(device_id: int) -> Device:
     device.active = False
     device.update_db()
     return device
+
+
+# ******* DEVICE CONTENT
+
+
+# UPDATE DEVICE CONTENT
+def update_device_content(device_id: int, water: bool, lather: bool) -> Device:
+    device_content: Device = Device.query.filter_by(id=device_id).first()
+    device_content.water = water
+    device_content.lather = lather
+    device_content.last_update = datetime.utcnow()
+    device_content.update_db()
+    return device_content

@@ -36,7 +36,8 @@ def get_device_by_id(device_id: int):
 
     # ELSE RETURN DEVICE FIELDS
     return response(True, {'id': device.id, 'code': device.code, 'active': device.active,
-                           'owner_id': device.owner_id, 'last_update': device.last_update}, 200)
+                           'owner_id': device.owner_id, 'last_update': device.last_update,
+                           'water': device.water, "lather": device.lather}, 200)
 
 
 # UPDATE DEVICE
@@ -52,3 +53,18 @@ def update_device(device_id: int, code: str):
     # ELSE UPDATE DEVICE AND RETURN OK
     device_service_db.update_device(device_id=device_id, code=code)
     return response(True, {'msg': 'device successfully updated!'}, 200)
+
+
+# ***** DEVICE CONTEnT
+
+# UPDATE DEVICE CONTENT
+def update_device_content(device_code: str, water: bool, lather: bool):
+    device = device_service_db.get_device_by_code(code=device_code)
+    if not device:
+        return response(False, {'msg': 'device not found'}, 404)
+
+    device_content_updated = device_service_db.update_device_content(device_id=device.id, water=water, lather=lather)
+    # RESPONSE OK AND DEVICE CONTENT FIELDS
+    return response(True, {'device_id': device_content_updated.id,
+                           'water': device_content_updated.water,
+                           'lather': device_content_updated.lather}, 200)

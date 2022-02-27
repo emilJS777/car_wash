@@ -55,3 +55,15 @@ def update_device(device_id: int):
     req = request.get_json()
     res = device_service.update_device(device_id=device_id, code=req['code'])
     return res
+
+
+# ***** DEVICE CONTENT
+
+
+# UPDATE DEVICE CONTENT FROM DEVICE
+def update_device_content():
+    device_code: str = request.args['device_code']
+    water: bool = request.args['water'] == 'true'
+    lather: bool = request.args['lather'] == 'true'
+    res = device_service.update_device_content(device_code=device_code, water=water, lather=lather)
+    return res

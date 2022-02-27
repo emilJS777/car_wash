@@ -6,6 +6,8 @@ class Device(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String(120), nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
+    water = db.Column(db.Boolean, default=False)
+    lather = db.Column(db.Boolean, default=False)
     active = db.Column(db.Boolean, default=False)
     last_update = db.Column(db.DateTime, default=datetime.utcnow())
 

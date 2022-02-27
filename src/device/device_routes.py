@@ -25,3 +25,8 @@ app.add_url_rule("/api/device",
 app.add_url_rule("/api/device/<int:device_id>",
                  view_func=device_controller.update_device,
                  methods=["PUT"])
+
+# UPDATE DEVICE CONTENT
+app.add_url_rule("/api/device_content",
+                 view_func=device_controller.update_device_content,
+                 methods=["GET"])
