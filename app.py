@@ -1,5 +1,5 @@
-from src import app, socketio
+from src import app
 
 # context_initializer.Initializer()
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    app.run(debug=True)
