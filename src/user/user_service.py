@@ -33,13 +33,23 @@ def create_user(name: str, first_name: str, last_name: str, password: str, ticke
             return response(False, {'msg': 'ticket code not found'}, 404)
     # ELSE IF NOT TICKET CODE CREATE NEW TICKET FOR CLIENT USER
     else:
-        ticket: Ticket = ticket_service_db.create_ticket(role_id=role_service_db.get_role_by_name(name="client").id)
+        ticket: Ticket = ticket_service_db.create_ticket(
+            role_id=role_service_db.get_role_by_name(name="client").id
+        )
 
     # ELSE CREATE USER
-    user: User = user_service_db.create_user(name=name, first_name=first_name, last_name=last_name, password=password)
+    user: User = user_service_db.create_user(
+        name=name,
+        first_name=first_name,
+        last_name=last_name,
+        password=password
+    )
 
     # ASSIGN TICKET USER ID AND RETURN RESPONSE OK
-    ticket_service_db.update_ticket(ticket_id=ticket.id, user_id=user.id)
+    ticket_service_db.update_ticket(
+        ticket_id=ticket.id,
+        user_id=user.id
+    )
 
     return response(True, {'msg': f'user by id {user.id} successfully created!'}, 201)
 

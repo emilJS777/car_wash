@@ -5,7 +5,7 @@ from datetime import datetime
 class DeviceError(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     device_code = db.Column(db.String(120), nullable=False)
-    msg = db.Column(db.String(300), nullable=False)
+    msg = db.Column(db.String(120), nullable=False)
     creation_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR

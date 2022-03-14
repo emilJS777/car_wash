@@ -2,15 +2,21 @@ from .ticket_model import Ticket
 import random
 import string
 from typing import List
+from src.user import user_service_db
 
 
 # GET TICKET IDS BY ROLE ID
-def get_tickets_by_role_id(role_id: int) -> list:
-    tickets_arr = []
+def get_tickets_by_role_id(role_id: int) -> list[dict]:
+    tickets_arr: List[dict] = []
     tickets: List[Ticket] = Ticket.query.order_by(Ticket.expiration_date).filter_by(role_id=role_id).all()
     for ticket in tickets:
+        user_name = None
+
+        if ticket.user_id:
+            user_name = user_service_db.get_user_by_id(ticket.user_id).name
+
         tickets_arr.append({'id': ticket.id, 'role_id': ticket.role_id, 'expiration_date': ticket.expiration_date,
-                            'code': ticket.code, 'active': ticket.active, 'user_id': ticket.user_id})
+                            'code': ticket.code, 'active': ticket.active, 'user_id': ticket.user_id, 'user_name': user_name})
     return tickets_arr
 
 
