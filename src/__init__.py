@@ -10,6 +10,7 @@ from .email import email_routes
 from .role import role_routes
 from .ticket import ticket_routes
 from .user import user_routes
+from .bonus_card import bonus_card_routes
 
 
 # from src._old.mqtt import *
