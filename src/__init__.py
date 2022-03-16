@@ -11,6 +11,7 @@ from .role import role_routes
 from .ticket import ticket_routes
 from .user import user_routes
 from .bonus_card import bonus_card_routes
+from .bonus_card_payment import bonus_card_payment_routes
 
 
 # from src._old.mqtt import *

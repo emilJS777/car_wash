@@ -45,7 +45,7 @@ def get_by_id(bonus_card_id: int) -> dict:
         return response(False, {'msg': 'bonus card not found'}, 404)
 
     return response(True, {'id': bonus_card.id,
-                           'key': bonus_card.code,
+                           'code': bonus_card.code,
                            'price': bonus_card.price,
                            'owner_id': bonus_card.owner_id}, 200)
 

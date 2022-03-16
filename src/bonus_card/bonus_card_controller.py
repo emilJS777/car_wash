@@ -11,7 +11,7 @@ from flask_expects_json import expects_json
 @expects_json(bonus_card_validator.bonus_card_schema)
 def create() -> dict:
     req: dict = request.get_json()
-    res: dict = bonus_card_service.create(code=req['code'])
+    res: dict = bonus_card_service.create(code=req['code'], price=req['price'])
     return res
 
 
@@ -21,7 +21,7 @@ def create() -> dict:
 @expects_json(bonus_card_validator.bonus_card_schema)
 def update(bonus_card_id: int) -> dict:
     req: dict = request.get_json()
-    res: dict = bonus_card_service.update(bonus_card_id=bonus_card_id, code=req['code'])
+    res: dict = bonus_card_service.update(bonus_card_id=bonus_card_id, code=req['code'], price=req['price'])
     return res
 
 

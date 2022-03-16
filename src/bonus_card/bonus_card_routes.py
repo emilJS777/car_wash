@@ -19,7 +19,7 @@ app.add_url_rule("/api/bonus_card/<int:bonus_card_id>",
 
 # GET BY ID
 app.add_url_rule("/api/bonus_card/<int:bonus_card_id>",
-                 view_func=bonus_card_controller.create,
+                 view_func=bonus_card_controller.get_by_id,
                  methods=["GET"])
 
 # GET ALL IDS
