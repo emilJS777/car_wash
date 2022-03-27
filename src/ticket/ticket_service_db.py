@@ -6,7 +6,7 @@ from src.user import user_service_db
 
 
 # GET TICKET IDS BY ROLE ID
-def get_tickets_by_role_id(role_id: int) -> list[dict]:
+def get_tickets_by_role_id(role_id: int) -> List[dict]:
     tickets_arr: List[dict] = []
     tickets: List[Ticket] = Ticket.query.order_by(Ticket.expiration_date).filter_by(role_id=role_id).all()
     for ticket in tickets:
