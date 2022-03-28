@@ -16,7 +16,6 @@ def get_email_by_ticket_id(ticket_id: int):
 
 
 # CREATE EMAIL
-# @validator_middleware.check_schema({'name': 'anun'})
 @auth_middleware.check_authorize
 @ticket_middleware.check_active_ticket
 @role_middleware.check_role(['admin', 'engineer'])
