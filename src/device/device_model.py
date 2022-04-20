@@ -9,12 +9,14 @@ class Device(db.Model):
     water = db.Column(db.Boolean, default=False)
     lather = db.Column(db.Boolean, default=False)
     active = db.Column(db.Boolean, default=False)
+    car_wash_id = db.Column(db.Integer, nullable=False)
     last_update = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, code: str, owner_id: int):
+    def __init__(self, code: str, owner_id: int, car_wash_id: int):
         self.code = code,
         self.owner_id = owner_id
+        self.car_wash_id = car_wash_id
 
     # SAVE DB SELF
     def save_db(self):

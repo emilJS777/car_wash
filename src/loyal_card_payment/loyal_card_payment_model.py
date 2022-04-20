@@ -1,17 +1,17 @@
 from src import db
+from datetime import datetime
 
 
-class BonusCard(db.Model):
+class LoyalCardPayment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    code = db.Column(db.String(120), unique=True, nullable=False)
-    price = db.Column(db.Numeric(8, 2))
-    owner_id = db.Column(db.Integer, nullable=False)
+    loyal_card_id = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Numeric(8, 2), nullable=False)
+    creation_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, owner_id: int, code: str, price: float):
-        self.code = code
+    def __init__(self, loyal_card_id: int, price: float):
+        self.loyal_card_id = loyal_card_id
         self.price = price
-        self.owner_id = owner_id
 
     # SAVE DB SELF
     def save_db(self):

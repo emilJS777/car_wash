@@ -9,7 +9,7 @@ from typing import List
 def get_tickets_by_role_name(role_name: str):
     # GET ALL TICKETS BY ENGINEER ROLE ID AND RETURN OK
     role_id: int = role_service_db.get_role_by_name(name=role_name).id
-    ticket_arr: List[Ticket] = ticket_service_db.get_tickets_by_role_id(role_id=role_id)
+    ticket_arr: List[dict] = ticket_service_db.get_tickets_by_role_id(role_id=role_id)
     return response(True, ticket_arr, 200)
 
 

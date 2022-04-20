@@ -10,8 +10,8 @@ from .email import email_routes
 from .role import role_routes
 from .ticket import ticket_routes
 from .user import user_routes
-from .bonus_card import bonus_card_routes
-from .bonus_card_payment import bonus_card_payment_routes
+from .loyal_card import loyal_card_routes
+from .loyal_card_payment import loyal_card_payment_routes
 
 
 # from src._old.mqtt import *

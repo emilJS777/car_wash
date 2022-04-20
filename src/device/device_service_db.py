@@ -22,6 +22,15 @@ def get_device_ids_by_owner(owner_id: int) -> List[int]:
     return ids
 
 
+# GET DEVICE IDS BY CAR WASH ID
+def get_device_ids_by_car_wash(car_wash_id: int) -> List[int]:
+    ids: List[int] = []
+    devices: List[Device] = Device.query.filter_by(car_wash_id=car_wash_id).order_by(desc(Device.last_update)).all()
+    for device in devices:
+        ids.append(device.id)
+    return ids
+
+
 # GET Device BY TITLE
 def get_device_by_code(code: str) -> Device:
     device: Device = Device.query.filter_by(code=code).first()
@@ -35,18 +44,26 @@ def get_device_by_id(device_id: int) -> Device:
 
 
 # CREATE Device
-def create_device(code: str, owner_id: int) -> Device:
-    device: Device = Device(code=code, owner_id=owner_id)
+def create_device(code: str, owner_id: int, car_wash_id: int) -> Device:
+    device: Device = Device(code=code, owner_id=owner_id, car_wash_id=car_wash_id)
     device.save_db()
     return device
 
 
 # UPDATE DEVICE
-def update_device(device_id: int, code: str) -> Device:
+def update_device(device_id: int, code: str, car_wash_id: int) -> Device:
     device: Device = Device.query.filter_by(id=device_id).first()
     device.code = code
+    device.car_wash_id = car_wash_id
     device.last_update = datetime.utcnow()
     device.update_db()
+    return device
+
+
+# DELETE DEVICE
+def delete_device(device_id: int) -> Device:
+    device: Device = Device.query.filter_by(id=device_id).first()
+    device.delete_db()
     return device
 
 

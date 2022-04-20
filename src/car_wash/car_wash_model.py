@@ -4,16 +4,20 @@ from datetime import datetime
 
 class CarWash(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50), unique=False, nullable=False)
-    address = db.Column(db.String(100), unique=False, nullable=False)
+    title = db.Column(db.String(60), unique=False, nullable=False)
+    address = db.Column(db.String(120), unique=False, nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
+    username = db.Column(db.String(60), nullable=False, unique=True)
+    password = db.Column(db.String(180), nullable=False, unique=True)
     creation_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, title: str, address: str, owner_id: int):
+    def __init__(self, title: str, address: str, owner_id: int, username: str, password: str):
         self.title = title
         self.address = address
         self.owner_id = owner_id
+        self.username = username
+        self.password = password
 
     # SAVE DB SELF
     def save_db(self):

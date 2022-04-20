@@ -38,9 +38,21 @@ def get_car_wash_by_id_by_owner_id(car_wash_id: int, owner_id: int) -> CarWash:
     return car_wash
 
 
+# GET CAR WASH BY USERNAME
+def get_car_wash_by_username(username: str) -> CarWash:
+    car_wash: CarWash = CarWash.query.filter_by(username=username).first()
+    return car_wash
+
+
 # CREATE CAR WASH
-def create_car_wash(title: str, address: str, owner_id: int) -> CarWash:
-    car_wash: CarWash = CarWash(title=title, address=address, owner_id=owner_id)
+def create_car_wash(title: str, address: str, owner_id: int, username: str, password: str) -> CarWash:
+    car_wash: CarWash = CarWash(
+        title=title,
+        address=address,
+        owner_id=owner_id,
+        username=username,
+        password=password
+    )
     car_wash.save_db()
     return car_wash
 

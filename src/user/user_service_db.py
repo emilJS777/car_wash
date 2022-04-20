@@ -22,6 +22,11 @@ def get_user_by_name(name: str) -> User:
     return user
 
 
+# CREATE USER TICKET
+def create_user_ticket(role_id: int) -> User:
+    user: User = User(role_id=role_id)
+
+
 # CREATE USER AND RETURN
 def create_user(name: str, password: str, first_name: str, last_name: str) -> User:
     user: User = User(name=name, password=password, first_name=first_name, last_name=last_name)

@@ -3,6 +3,9 @@ from .import car_wash_service_db
 from .car_wash_service_db import CarWash
 from src._response import response
 from typing import List
+from flask_bcrypt import generate_password_hash, check_password_hash
+from flask import make_response, jsonify
+from flask_jwt_extended import create_access_token
 
 
 # GET CAR WASH IDS
@@ -26,7 +29,8 @@ def get_car_wash_by_id(car_wash_id: int):
 
     # ELSE RETURN CAR WASH FIELDS AND OK
     return response(True, {'id': car_wash.id, 'title': car_wash.title,
-                           'creation_date': car_wash.creation_date, 'address': car_wash.address,
+                           'creation_date': car_wash.creation_date,
+                           'address': car_wash.address,
                            'owner_id': car_wash.owner_id}, 200)
 
 
@@ -38,12 +42,15 @@ def get_car_wash_by_id_by_owner_id(car_wash_id: int, owner_id: int):
         return response(False, {'msg': 'car wash not found'}, 404)
 
     # ELSE RETURN CAR WASH FIELDS AND OK
-    return response(True, {'id': car_wash.id, 'title': car_wash.title,
-                           'creation_date': car_wash.creation_date, 'address': car_wash.address}, 200)
+    return response(True, {'id': car_wash.id,
+                           'title': car_wash.title,
+                           'creation_date': car_wash.creation_date,
+                           'address': car_wash.address,
+                           'owner_id': car_wash.owner_id}, 200)
 
 
 # CREATE CAR WASH
-def create_car_wash(title: str, address: str, owner_id: int):
+def create_car_wash(title: str, address: str, owner_id: int, username: str, password: str):
     # GET CAR WASH BY TITLE AND VERIFY. IF EXIST RETURN CONFLICT
     if car_wash_service_db.get_car_wash_by_title(title=title):
         return response(False, {'msg': 'car wash by this title exist'}, 409)
@@ -52,8 +59,18 @@ def create_car_wash(title: str, address: str, owner_id: int):
     if not user_service_db.get_user_by_id(user_id=owner_id):
         return response(False, {'msg': 'owner not found'}, 404)
 
+    # GET CAR WASH BY USERNAME AND VERIFY IF EXIST RETURN CONFLICT
+    if car_wash_service_db.get_car_wash_by_username(username):
+        return response(False, {'msg': f'username {username} exist'}, 409)
+
     # ELSE CREATE NEW CAR WASH AND RETURN OK
-    car_wash: CarWash = car_wash_service_db.create_car_wash(title=title, address=address, owner_id=owner_id)
+    car_wash: CarWash = car_wash_service_db.create_car_wash(
+        title=title,
+        address=address,
+        owner_id=owner_id,
+        username=username,
+        password=generate_password_hash(password)
+    )
     return response(True, {'msg': f'car wash by title {car_wash.title} successfully created!'}, 201)
 
 
@@ -68,6 +85,19 @@ def update_car_wash(car_wash_id: int, title: str, address: str, owner_id: int):
         return response(False, {'msg': 'owner not found'}, 404)
 
     # ELSE UPDATE CAR WASH AND RETURN OK
-    car_wash: CarWash = car_wash_service_db.update_car_wash(car_wash_id=car_wash_id, title=title,
-                                                            address=address, owner_id=owner_id)
+    car_wash: CarWash = car_wash_service_db.update_car_wash(car_wash_id=car_wash_id,
+                                                            title=title,
+                                                            address=address,
+                                                            owner_id=owner_id)
     return response(True, {'msg': f'car wash by id {car_wash.id} successfully updated!'}, 200)
+
+
+# CAR WASH LOGIN
+def car_wash_login(username: str, password: str):
+    # GET CAR WASH BY USERNAME AND VERIFY IF NOT FOUND OR NOT CHECK PASSWORD HASH RETURN 401
+    car_wash = car_wash_service_db.get_car_wash_by_username(username)
+    if not car_wash or not check_password_hash(car_wash.password, password):
+        return make_response(jsonify(success=False, msg="Invalid username/password"), 401)
+
+    token: str = create_access_token(identity=car_wash.id)
+    return make_response(jsonify(success=True, token=token, msg="Login successful"), 200)

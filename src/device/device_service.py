@@ -16,14 +16,20 @@ def get_device_ids_by_owner_id(owner_id: int):
     return response(True, device_ids, 200)
 
 
+# GET DEVICE IDS BY CAR WASH ID
+def get_device_ids_by_car_wash_id(car_wash_id: int):
+    device_ids: List[int] = device_service_db.get_device_ids_by_car_wash(car_wash_id=car_wash_id)
+    return response(True, device_ids, 200)
+
+
 # CREATE DEVICE
-def create_device(code: str, owner_id: int):
+def create_device(code: str, owner_id: int, car_wash_id: int):
     # GET DEVICE BY CODE AND VERIFY. IF EXIST RETURN CONFLICT
     if device_service_db.get_device_by_code(code=code):
         return response(False, {'msg': 'device by this code exist'}, 409)
 
     # ELSE CREATE DEVICE AND RETURN OK
-    device_service_db.create_device(code=code, owner_id=owner_id)
+    device_service_db.create_device(code=code, owner_id=owner_id, car_wash_id=car_wash_id)
     return response(True, {'msg': 'device successfully created!'}, 201)
 
 
@@ -41,7 +47,7 @@ def get_device_by_id(device_id: int):
 
 
 # UPDATE DEVICE
-def update_device(device_id: int, code: str):
+def update_device(device_id: int, code: str, car_wash_id: int):
     # GET DEVICE BY ID AND VERIFY. IF NOT FOUND RETURN NOT FOUND
     if not device_service_db.get_device_by_id(device_id=device_id):
         return response(False, {'msg': 'device not found'}, 404)
@@ -51,8 +57,19 @@ def update_device(device_id: int, code: str):
         return response(False, {'msg': 'device by this code exist'}, 409)
 
     # ELSE UPDATE DEVICE AND RETURN OK
-    device_service_db.update_device(device_id=device_id, code=code)
+    device_service_db.update_device(device_id=device_id, code=code, car_wash_id=car_wash_id)
     return response(True, {'msg': 'device successfully updated!'}, 200)
+
+
+# DELETE DEVICE
+def delete_device(device_id: int):
+    # GET DEVICE BY ID AND VERIFY IF NOT FOUND RETURN NOT FOUND
+    if not device_service_db.get_device_by_id(device_id):
+        return response(False, {'msg': 'device not found'}, 404)
+
+    # ELSE REMOVE DEVICE AND RETURN OK
+    device_service_db.delete_device(device_id)
+    return response(True, {'msg': 'device successfully deleted'}, 200)
 
 
 # ***** DEVICE CONTEnT

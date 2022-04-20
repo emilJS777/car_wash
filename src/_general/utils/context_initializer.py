@@ -22,10 +22,13 @@ class Initializer:
     def init_first_ticket(self):
         # IF FIRST TICKET NOT FOUND
         if not Ticket.query.first():
+
             # GET ID ADMIN ROLE
             role_id = role_service_db.get_role_by_name(name=self.roles[0]).id
+
             # GENERATE TICKET CODE
             ticket_code = ticket_service_db.generate_ticket_code()
+
             # CREATE TICKET BY ADMIN ROLE
             ticket_service_db.create_ticket(role_id=role_id, code=ticket_code)
             logger.info(f"ticket for first admin created! code={ticket_code}")

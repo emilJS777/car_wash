@@ -45,5 +45,10 @@ def get_profile():
     ticket: Ticket = ticket_service_db.get_ticket_by_user_id(user_id=g.user_id)
     user: User = user_service_db.get_user_by_id(user_id=g.user_id)
     role: Role = role_service_db.get_role_by_id(role_id=ticket.role_id)
-    return response(True, {'first_name': user.first_name, 'last_name': user.last_name,
-                           'user_name': user.name, 'role_name': role.name}, 200)
+
+    return response(True, {'first_name': user.first_name,
+                           'last_name': user.last_name,
+                           'user_name': user.name,
+                           'role_name': role.name}, 200)
+
+
