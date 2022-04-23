@@ -17,7 +17,7 @@ def login(name: str, password: str):
     # GET USER BY NAME AND CHECK EXIST OR PASSWORD
     user: User = user_service_db.get_user_by_name(name=name)
     if not user or not check_password_hash(user.password_hash, password):
-        return response(False, {'msg': 'user not found'}, 404)
+        return response(False, {'msg': 'invalid username and/or password'}, 404)
 
     # GENERATE PAIR TOKEN
     auth = auth_service_db.generate_pair_token(user_id=user.id)

@@ -45,13 +45,11 @@ def get_car_wash_by_username(username: str) -> CarWash:
 
 
 # CREATE CAR WASH
-def create_car_wash(title: str, address: str, owner_id: int, username: str, password: str) -> CarWash:
+def create_car_wash(title: str, address: str, owner_id: int) -> CarWash:
     car_wash: CarWash = CarWash(
         title=title,
         address=address,
-        owner_id=owner_id,
-        username=username,
-        password=password
+        owner_id=owner_id
     )
     car_wash.save_db()
     return car_wash

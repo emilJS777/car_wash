@@ -30,7 +30,7 @@ app.add_url_rule("/api/car_wash/<int:car_wash_id>",
                  view_func=car_wash_controller.update_car_wash,
                  methods=["PUT"])
 
-# CAR WASH LOGIN
-app.add_url_rule("/api/login",
-                 view_func=car_wash_controller.car_wash_login,
-                 methods=["POST"])
+# # CAR WASH LOGIN
+# app.add_url_rule("/api/login",
+#                  view_func=car_wash_controller.car_wash_login,
+#                  methods=["POST"])

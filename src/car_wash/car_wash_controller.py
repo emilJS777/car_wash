@@ -47,9 +47,7 @@ def create_car_wash():
     res = car_wash_service.create_car_wash(
         title=req['title'],
         address=req['address'],
-        owner_id=req['owner_id'],
-        username=req['username'],
-        password=req['password']
+        owner_id=req['owner_id']
     )
     return res
 
@@ -60,15 +58,17 @@ def create_car_wash():
 @role_middleware.check_role(["admin", "engineer"])
 def update_car_wash(car_wash_id: int):
     req = request.get_json()
-    res = car_wash_service.update_car_wash(car_wash_id=car_wash_id, title=req['title'],
-                                           address=req['address'], owner_id=req['owner_id'])
+    res = car_wash_service.update_car_wash(car_wash_id=car_wash_id,
+                                           title=req['title'],
+                                           address=req['address'],
+                                           owner_id=req['owner_id'])
     return res
 
 
-# CAR WASH LOGIN
-def car_wash_login() -> dict:
-    username: str = request.form.get('username')
-    password: str = request.form.get('password')
-    res: dict = car_wash_service.car_wash_login(username=username, password=password)
-    return res
+# # CAR WASH LOGIN
+# def car_wash_login() -> dict:
+#     username: str = request.form.get('username')
+#     password: str = request.form.get('password')
+#     res: dict = car_wash_service.car_wash_login(username=username, password=password)
+#     return res
 
