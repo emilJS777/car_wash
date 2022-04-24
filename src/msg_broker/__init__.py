@@ -19,27 +19,33 @@ class Broker:
         nc = await nats.connect(servers=['nats://144.91.119.81:4222'])
 
         while True:
+
             # Receive messages on 'foo'
             sub = await nc.subscribe("payment")
 
             # Publish a message to 'foo'
-            # await nc.publish("payment", b{'id': ''})
+            # await nc.publish("powerOffOn", bytes(json.dumps({'id': '1', 'price': 400, 'currency': 'amd', 'type': 'coin'})
+            #                                       .encode('utf-8')))
 
             # Process a message
-            msg = await sub.next_msg()
-            data = json.loads(msg.data.decode('ascii'))
-
-            if msg.subject == 'payment':
-                Broker.payment(
-                    device_code=data['id'],
-                    price=data['price'],
-                    currency=data['currency'],
-                    type=data['type']
-                )
+            try:
+                msg = await sub.next_msg()
+                data = json.loads(msg.data.decode('ascii'))
+                print(msg)
+                if msg.subject == 'payment':
+                    print(data)
+                    Broker.payment(
+                        device_code=data['id'],
+                        price=data['price'],
+                        currency=data['currency'],
+                        type=data['type']
+                    )
+            except:
+                pass
 
             # Close NATS connection
-            # await nc.close()
-            time.sleep(20)
+            await nc.close()
+            time.sleep(5)
 
     @staticmethod
     def payment(device_code, price, currency, type):
@@ -50,5 +56,6 @@ class Broker:
             currency=currency,
             type=type
         )
+
 
 
