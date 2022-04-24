@@ -11,6 +11,7 @@ from flask import request, g
 @role_middleware.check_role(['owner'])
 # @expiration_middleware.check_expiration(["owner"])
 def get_device_payment_ids():
+    print(request.args)
     res = device_payment_service.get_device_payment_ids(
         owner_id=g.user_id,
         car_wash_id=request.args.get('car_wash_id'),
