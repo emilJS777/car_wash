@@ -15,10 +15,11 @@ class Broker:
 
     @staticmethod
     async def subscriber():
+        # Connect to NATS!
+        nc = await nats.connect(servers=['nats://144.91.119.81:4222'])
 
         while True:
-            # Connect to NATS!
-            nc = await nats.connect(servers=['nats://144.91.119.81:4222'])
+
 
             # Receive messages on 'foo'
             sub = await nc.subscribe("payment")
@@ -44,8 +45,8 @@ class Broker:
                 pass
 
             # Close NATS connection
-            await nc.close()
-            time.sleep(5)
+            # await nc.close()
+            time.sleep(3)
 
     @staticmethod
     def payment(device_code, price, currency, type):

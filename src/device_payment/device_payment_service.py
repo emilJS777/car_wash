@@ -9,18 +9,18 @@ def get_device_payment_ids(owner_id: int, car_wash_id: int or None, device_id: i
     if device_id and car_wash_id:
         device_payment_ids: List[int] = device_payment_service_db.get_device_payment_ids_by_car_wash_id_device_id(
             owner_id=owner_id,
-            car_wash_id=car_wash_id,
-            device_id=device_id
+            car_wash_id=int(car_wash_id),
+            device_id=int(device_id)
         )
     elif device_id:
         device_payment_ids: List[int] = device_payment_service_db.get_device_payment_ids_by_device_id(
             owner_id=owner_id,
-            device_id=device_id
+            device_id=int(device_id)
         )
     elif car_wash_id:
         device_payment_ids: List[int] = device_payment_service_db.get_device_payment_ids_by_car_wash_id(
             owner_id=owner_id,
-            car_wash_id=car_wash_id
+            car_wash_id=int(car_wash_id)
         )
     else:
         device_payment_ids: List[int] = device_payment_service_db.get_device_payment_ids(
@@ -75,4 +75,3 @@ def create_device_payment(device_code, price, currency, type):
                                                         currency=currency,
                                                         type=type,
                                                         owner_id=device.owner_id)
-        print('asdsad')
