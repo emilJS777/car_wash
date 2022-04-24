@@ -15,17 +15,17 @@ class Broker:
 
     @staticmethod
     async def subscriber():
-        # Connect to NATS!
-        nc = await nats.connect(servers=['nats://144.91.119.81:4222'])
 
         while True:
+            # Connect to NATS!
+            nc = await nats.connect(servers=['nats://144.91.119.81:4222'])
 
             # Receive messages on 'foo'
             sub = await nc.subscribe("payment")
 
             # Publish a message to 'foo'
             # await nc.publish("powerOffOn", bytes(json.dumps({'id': '1', 'price': 400, 'currency': 'amd', 'type': 'coin'})
-            #                                       .encode('utf-8')))
+            #                                       .encode('utf-8')))a
 
             # Process a message
             try:
