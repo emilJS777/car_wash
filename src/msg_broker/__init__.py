@@ -22,6 +22,9 @@ class Broker:
             # Receive messages on 'foo'
             sub = await nc.subscribe("payment")
 
+            # Publish a message to 'foo'
+            # await nc.publish("payment", b{'id': ''})
+
             # Process a message
             msg = await sub.next_msg()
             data = json.loads(msg.data.decode('ascii'))
