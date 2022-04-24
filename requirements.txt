@@ -45,7 +45,6 @@ nats-py==2.1.0
 netifaces==0.10.4
 oauthlib==3.1.0
 olefile==0.46
-onboard==1.4.1
 paho-mqtt==1.6.1
 pexpect==4.6.0
 Pillow==7.0.0
