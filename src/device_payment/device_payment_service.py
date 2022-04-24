@@ -43,22 +43,36 @@ def get_device_payment_by_id(device_payment_id):
                            'creation_date': device_payment.creation_date, 'type': device_payment.type}, 200)
 
 
+# # CREATE DEVICE PAYMENT
+# def create_device_payment(device_code, price, currency, type):
+#     # GET DEVICE BY CODE AND VERIFY. IF NOT FOUND RETURN NOT FOUND
+#     device = device_service_db.get_device_by_code(code=device_code)
+#     if not device:
+#         return response(False, {'msg': 'device not found'}, 404)
+#
+#     # IF DEVICE IS NOT ACTIVE CHANGE TO ACTIVE
+#     if not device.active:
+#         device_service_db.activate_device(device_id=device.id)
+#
+#     # ELSE CREATE DEVICE PAYMENT END RETURN OK
+#     device_payment = device_payment_service_db.create_device_payment(device_id=device.id,
+#                                                                      car_wash_id=device.car_wash_id,
+#                                                                      price=price,
+#                                                                      currency=currency,
+#                                                                      type=type,
+#                                                                      owner_id=device.owner_id)
+#     return response(True, {'id': device_payment.id, 'device_id': device.id, 'price': device_payment.price}, 200)
+
+
 # CREATE DEVICE PAYMENT
-def create_device_payment(device_code, price, currency):
+def create_device_payment(device_code, price, currency, type):
     # GET DEVICE BY CODE AND VERIFY. IF NOT FOUND RETURN NOT FOUND
     device = device_service_db.get_device_by_code(code=device_code)
-    if not device:
-        return response(False, {'msg': 'device not found'}, 404)
-
-    # IF DEVICE IS NOT ACTIVE CHANGE TO ACTIVE
-    if not device.active:
-        device_service_db.activate_device(device_id=device.id)
-
-    # ELSE CREATE DEVICE PAYMENT END RETURN OK
-    device_payment = device_payment_service_db.create_device_payment(device_id=device.id,
-                                                                     car_wash_id=device.car_wash_id,
-                                                                     price=price,
-                                                                     currency=currency,
-                                                                     type='cash',
-                                                                     owner_id=device.owner_id)
-    return response(True, {'id': device_payment.id, 'device_id': device.id, 'price': device_payment.price}, 200)
+    if device:
+        device_payment_service_db.create_device_payment(device_id=device.id,
+                                                        car_wash_id=device.car_wash_id,
+                                                        price=price,
+                                                        currency=currency,
+                                                        type=type,
+                                                        owner_id=device.owner_id)
+        print('asdsad')
