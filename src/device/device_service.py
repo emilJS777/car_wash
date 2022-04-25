@@ -77,11 +77,6 @@ def delete_device(device_id: int):
 # UPDATE DEVICE CONTENT
 def update_device_content(device_code: str, water: bool, lather: bool):
     device = device_service_db.get_device_by_code(code=device_code)
-    if not device:
-        return response(False, {'msg': 'device not found'}, 404)
+    if device:
+        device_service_db.update_device_content(device_id=device.id, water=water, lather=lather)
 
-    device_content_updated = device_service_db.update_device_content(device_id=device.id, water=water, lather=lather)
-    # RESPONSE OK AND DEVICE CONTENT FIELDS
-    return response(True, {'device_id': device_content_updated.id,
-                           'water': device_content_updated.water,
-                           'lather': device_content_updated.lather}, 200)
