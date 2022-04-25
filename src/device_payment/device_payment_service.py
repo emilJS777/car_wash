@@ -38,9 +38,13 @@ def get_device_payment_by_id(device_payment_id):
         return response(False, {'msg': 'device payment not found'}, 404)
 
     # ELSE RETURN DEVICE PAYMENT FIELDS AND OK
-    return response(True, {'id': device_payment.id, 'device_id': device_payment.device_id,
-                           'price': device_payment.price, 'currency': device_payment.currency,
-                           'creation_date': device_payment.creation_date, 'type': device_payment.type}, 200)
+    return response(True, {'id': device_payment.id,
+                           'device_id': device_payment.device_id,
+                           'device_code': device_payment.device_code,
+                           'price': device_payment.price,
+                           'currency': device_payment.currency,
+                           'creation_date': device_payment.creation_date,
+                           'type': device_payment.type}, 200)
 
 
 # # CREATE DEVICE PAYMENT
