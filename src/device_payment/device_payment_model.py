@@ -5,6 +5,7 @@ from datetime import datetime
 class DevicePayment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     device_id = db.Column(db.Integer, nullable=False)
+    device_code = db.Column(db.String(120), nullable=False)
     car_wash_id = db.Column(db.Integer, nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Numeric(8, 2), nullable=False)
@@ -13,8 +14,9 @@ class DevicePayment(db.Model):
     creation_date = db.Column(db.DateTime, default=datetime.utcnow())
 
     # CONSTRUCTOR
-    def __init__(self, device_id: int, car_wash_id: int, price: float, currency: str, type: str, owner_id: int):
+    def __init__(self, device_id: int, device_code: int, car_wash_id: int, price: float, currency: str, type: str, owner_id: int):
         self.device_id = device_id
+        self.device_code = device_code
         self.car_wash_id = car_wash_id
         self.owner_id = owner_id
         self.price = price

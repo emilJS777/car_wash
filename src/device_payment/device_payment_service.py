@@ -70,6 +70,7 @@ def create_device_payment(device_code, price, currency, type):
     device = device_service_db.get_device_by_code(code=device_code)
     if device:
         device_payment_service_db.create_device_payment(device_id=device.id,
+                                                        device_code=device_code,
                                                         car_wash_id=device.car_wash_id,
                                                         price=price,
                                                         currency=currency,

@@ -70,8 +70,9 @@ def get_device_payment_by_id(device_payment_id: int) -> DevicePayment:
 
 
 # CREATE DEVICE PAYMENT
-def create_device_payment(device_id: int, car_wash_id: int, price: float, currency: str, type: str, owner_id: int) -> DevicePayment:
+def create_device_payment(device_id: int, device_code: int, car_wash_id: int, price: float, currency: str, type: str, owner_id: int) -> DevicePayment:
     device_payment: DevicePayment = DevicePayment(device_id=device_id,
+                                                  device_code=device_code,
                                                   car_wash_id=car_wash_id,
                                                   price=price,
                                                   currency=currency,
