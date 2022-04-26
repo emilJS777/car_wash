@@ -9,11 +9,17 @@ import time
 from src.device_payment.device_payment_service import create_device_payment
 from src.device.device_service import update_device_content
 from src.device import device_service_db
+from src.devcie_counter import device_counter_service
 
 
 class Broker:
     def __init__(self):
         asyncio.run(Broker.subscriber())
+
+    @staticmethod
+    def counters(counters):
+        # UPDATE COUNTERS
+        device_counter_service.update_counters(counters)
 
     @staticmethod
     def payment(data):
@@ -39,16 +45,14 @@ class Broker:
         subject: str = msg.subject
         data = json.loads(msg.data.decode())
 
-        # CHECK ACTIVE DEVICE
-        device = device_service_db.get_device_by_code(data['id'])
-        if device and not device.active:
-            device_service_db.activate_device(device.id)
-
         if subject == "payment":
             Broker.payment(data)
 
         elif subject == "content":
             Broker.content(data)
+
+        elif subject == "counters":
+            Broker.counters(data)
 
 
     @staticmethod
@@ -60,6 +64,7 @@ class Broker:
 
             await nc.subscribe("payment", cb=Broker.message_handler)
             await nc.subscribe("content", cb=Broker.message_handler)
+            await nc.subscribe("counters", cb=Broker.message_handler)
             await nc.flush()
 
             # await nc.publish("updates", json.dumps({"symbol": "GOOG", "price": 1200}).encode())
