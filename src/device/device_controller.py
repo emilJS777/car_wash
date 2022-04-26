@@ -75,8 +75,17 @@ def delete_device(device_id: int):
     return res
 
 
-# ***** DEVICE CONTENT
+# ****** DEVICE ACTIVE
+def update_device_active():
+    req = request.get_json()
+    res = device_service.update_device_active(
+        device_id=req['id'],
+        device_active=req['active']
+    )
+    return res
 
+
+# ***** DEVICE CONTENT
 
 # UPDATE DEVICE CONTENT FROM DEVICE
 def update_device_content():

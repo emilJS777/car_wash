@@ -72,6 +72,21 @@ def delete_device(device_id: int):
     return response(True, {'msg': 'device successfully deleted'}, 200)
 
 
+# ***** DEVICE ACTIVE
+def update_device_active(device_id: int, device_active: bool):
+    # GET DEVICE BY ID AND VERIFY IF NOT FOUND RETURN NOT FOUND
+    if not device_service_db.get_device_by_id(device_id):
+        return response(False, {'msg': 'device not found'}, 404)
+
+    # ELSE CHANGE DEVICE ACTIVE ON DB
+    device = device_service_db.activate_device(device_id) \
+        if device_active else \
+        device_service_db.deactivate_device(device_id)
+
+    return response(True, {'active': device.active}, 200)
+
+
+
 # ***** DEVICE CONTEnT
 
 # UPDATE DEVICE CONTENT

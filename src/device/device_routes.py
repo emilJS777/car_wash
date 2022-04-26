@@ -36,6 +36,12 @@ app.add_url_rule("/api/device/<int:device_id>",
                  view_func=device_controller.delete_device,
                  methods=["DELETE"])
 
+# ******** DEVICE ACTIVE UPDATE
+app.add_url_rule("/api/device/active",
+                 view_func=device_controller.update_device_active,
+                 methods=["PUT"])
+
+# ******** DEVICE CENTENT UDPDATE
 # UPDATE DEVICE CONTENT
 app.add_url_rule("/api/device_content",
                  view_func=device_controller.update_device_content,
