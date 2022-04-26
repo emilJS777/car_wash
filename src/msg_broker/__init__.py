@@ -8,6 +8,7 @@ import time
 
 from src.device_payment.device_payment_service import create_device_payment
 from src.device.device_service import update_device_content
+from src.device import device_service_db
 
 
 class Broker:
@@ -38,6 +39,10 @@ class Broker:
         subject: str = msg.subject
         data = json.loads(msg.data.decode())
 
+        # CHECK ACTIVE DEVICE
+        device = device_service_db.get_device_by_code(data['id'])
+        if device and not device.active:
+            device_service_db.activate_device(device.id)
 
         if subject == "payment":
             Broker.payment(data)
